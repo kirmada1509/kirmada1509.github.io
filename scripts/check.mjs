@@ -13,7 +13,8 @@ for(const page of pages){
  for(const match of html.matchAll(/(?:href|src)="([^"#]+)(?:#[^"]*)?"/g)){
   const url=match[1];
   if(!url.startsWith('/')||url.startsWith('//'))continue;
-  const path=join(root,url==='/'?'index.html':url);
+  const pathname=url.split('?')[0];
+  const path=join(root,pathname==='/'?'index.html':pathname);
   if(!existsSync(path)||!statSync(path).isFile())errors.push(`${page}: missing ${url}`);
  }
  for(const match of html.matchAll(/href="#([^"]+)"/g))if(!html.includes(`id="${match[1]}"`))errors.push(`${page}: missing fragment ${match[1]}`);

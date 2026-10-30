@@ -1,1 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><rect width="48" height="48" rx="10" fill="#141518"/><path d="m10 31 5-15h6l3 7 3-7h6l5 15h-6l-2-8-4 8h-4l-4-8-2 8Z" fill="#ffab76"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <rect width="48" height="48" rx="12" fill="#101113" stroke="none"/>
+  <path class="brand-route route-a" d="M12 9v7c0 5 3 8 8 8h8c5 0 8 3 8 8v7" stroke="#ffab76" stroke-width="3.6" stroke-linecap="round"/>
+  <path class="brand-route route-b" d="M36 9v7c0 5-3 8-8 8h-8c-5 0-8 3-8 8v7" stroke="#e7ebf1" stroke-width="3.6" stroke-linecap="round"/>
+  <circle cx="24" cy="24" r="5.5" fill="#101113" stroke="none"/>
+  <circle class="brand-node" cx="24" cy="24" r="3.2" fill="#ffab76"/>
+</svg>

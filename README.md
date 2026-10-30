@@ -41,3 +41,12 @@ The `pages.yml` workflow automatically deploys pushes to `main`. It generates th
 The repository is named `kirmada1509.github.io`, so absolute asset paths work at the site root. Canonical links, social metadata, the sitemap, and robots.txt use that primary domain.
 
 The existing Sites publication is retained as a second deployment of the same static source, with its identity in `.openai/hosting.json`. No analytics, external font requests, or server-side services are required.
+
+
+## Interaction and readability
+
+The favicon and inline header share one custom SVG junction symbol. `scripts/site-assets.mjs` stamps versioned CSS, JavaScript, and favicon URLs after generation so existing visitors receive updated assets.
+
+All profile text, education, availability, project descriptions, case studies, and resume content are in the HTML. No content is hidden for scroll reveals or created by animation. With JavaScript blocked, the site remains fully readable and navigable; only enhancement controls are hidden.
+
+Motion is limited to decorative diagram outlines, logo traces, link arrows, and a reading-progress indicator. Diagram sequences play once on entry and can be replayed with **Trace flow** or hover/focus. There are no looping background animations. The **Motion** toggle stores a local preference, cancels active animations when off, and respects the operating system’s reduced-motion preference. Text positions, opacity, and layout remain unchanged.

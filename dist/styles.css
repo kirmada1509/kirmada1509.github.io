@@ -26,3 +26,41 @@
 .hero-education{margin-top:23px;font-size:13px;line-height:1.8;color:#c4c7cd}.hero-education strong{font-weight:500;color:var(--text)}.hero-education>span{color:var(--muted)}.hero-education+.hero-description{margin-top:17px}
 @media(max-width:650px){.hero-education{font-size:12px;margin-top:23px}.hero-education>span{display:block}.hero-topline{flex-wrap:wrap;gap:10px 18px}.hero-topline .mono-label{flex-shrink:0}.hero-topline .availability{margin-left:auto}}
 @media(max-width:375px){.hero-education{font-size:11px}.hero-topline{gap:10px 12px}}
+/* A shared circuit junction replaces the initials. It is a vector at every size. */
+.brand-mark{width:38px;height:38px;display:block;flex-shrink:0;border:0;padding:0;background:none;border-radius:0;letter-spacing:normal;overflow:visible}
+.brand-mark .brand-route{fill:none;stroke-width:3.6;stroke-linecap:round}
+.brand-mark .route-a{stroke:#ffab76}.brand-mark .route-b{stroke:#e7ebf1}.brand-mark .brand-node{stroke:none}
+.reading-progress{position:fixed;inset:0 0 auto;height:2px;background:var(--accent);z-index:25;transform:scaleX(0);transform-origin:left;pointer-events:none}
+.motion-toggle{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;padding:6px 8px;background:transparent;border:1px solid #383c44;border-radius:4px;color:#b9bec7;font:10px/1.5 var(--mono);flex-shrink:0}
+.motion-toggle[hidden],.trace-button[hidden]{display:none}
+.motion-toggle svg{width:13px;height:13px;stroke-width:1.5}.motion-toggle .motion-play{display:none}
+.motion-toggle[aria-pressed=false] .motion-pause{display:none}.motion-toggle[aria-pressed=false] .motion-play{display:block}
+.motion-toggle:hover:not(:disabled){border-color:#717a89;color:var(--text)}.motion-toggle:disabled{color:var(--faint);cursor:default}
+.header-context{white-space:nowrap}.header-resume{padding-left:18px}.page-shell .back-link{margin-left:0}.page-shell .motion-toggle{margin-left:auto}
+.visual-tools{display:flex;align-items:center;gap:17px}.trace-button{display:inline-flex;align-items:center;gap:9px;background:#202c3b;border:1px solid #495e7a;color:#d1e0f5;padding:6px 9px;border-radius:3px;font:9px/1.4 var(--mono);letter-spacing:0;white-space:nowrap}
+.trace-button:hover{background:#2a3a4d;border-color:#8caad4;color:#fff}.trace-button>span{font-size:13px}
+.project-visual{isolation:isolate}.project-visual:before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(280px circle at var(--pointer-x,50%) var(--pointer-y,50%),#b9cfff12,transparent 75%);opacity:0;transition:opacity .25s}
+.project.is-pointing .project-visual:before{opacity:1}.project:focus-within{border-color:#7688a2}
+.runtime-nodes>div,.ai-flow-row>span,.guard-input>span,.guard-outcomes>span,.sync-node,.app-modules>span,.mobile-build>span,.architecture-flow>span{outline:1px solid transparent;outline-offset:4px;border-radius:3px}
+.button,.project-link>span,.hero-socials a>span,.project h3 a>span{transition:transform .2s ease,background .2s,border-color .2s,color .2s}
+html[data-motion=on] .button:hover{transform:translateY(-2px)}
+html[data-motion=on] .project-link:hover>span,html[data-motion=on] .project-link:focus-visible>span,html[data-motion=on] .project h3 a:hover>span,html[data-motion=on] .hero-socials a:hover>span{transform:translate(2px,-2px)}
+@keyframes route-draw{from{stroke-dashoffset:64}to{stroke-dashoffset:0}}
+@keyframes junction-pulse{0%,100%{r:3.2}45%{r:4.5}}
+html[data-motion=on] .wordmark:is(:hover,:focus-visible) .brand-route{stroke-dasharray:64;animation:route-draw .65s ease both}
+html[data-motion=on] .wordmark:is(:hover,:focus-visible) .route-b{animation-delay:.1s}
+html[data-motion=on] .wordmark:is(:hover,:focus-visible) .brand-node{animation:junction-pulse .7s ease}
+html[data-motion=off]{scroll-behavior:auto}
+html[data-motion=off] *,html[data-motion=off] *:before,html[data-motion=off] *:after{animation:none!important;transition:none!important}
+@media(max-width:900px){.site-header{gap:17px}.header-context{font-size:7px}.motion-toggle{font-size:9px;padding:6px}.header-resume{padding-left:15px}.visual-tools{gap:12px}.visual-tools>span{font-size:6px}}
+@media(max-width:650px){.site-header{gap:14px}.motion-toggle{margin-left:auto;width:30px;height:30px;padding:7px;justify-content:center}.motion-toggle>[data-motion-label]{display:none}.header-resume{margin-left:0;padding-left:0}.brand-mark{width:33px;height:33px}.visual-tools{gap:10px}.visual-tools>span{display:none}.trace-button{font-size:8px;padding:5px 8px}.voice-visual>.visual-toolbar{min-height:47px}.page-shell .brand-mark{width:30px;height:30px}.page-shell .site-header{gap:12px}.page-shell .back-link{font-size:10px;gap:6px}}
+@media(max-width:375px){.site-header{gap:12px}.wordmark{gap:8px}.brand-mark{width:31px;height:31px}.header-resume{gap:8px}.motion-toggle{width:28px;height:28px;padding:6px}.page-shell .brand-mark{width:27px;height:27px}.page-shell .wordmark{font-size:11px;gap:7px}.page-shell .back-link{font-size:9px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.project-visual:before{display:none}*,*:before,*:after{animation:none!important;transition:none!important}}
+@media print{.reading-progress,.motion-toggle,.trace-button{display:none!important}}
+/* Controls keep their footprint when toggled; reading positions do not jump. */
+.motion-toggle{width:102px;justify-content:center}.voice-visual>.visual-toolbar{min-height:60px}
+@media(max-width:900px){.motion-toggle{width:94px}}
+@media(max-width:650px){.motion-toggle{width:30px}.voice-visual>.visual-toolbar{min-height:50px}}
+@media(max-width:375px){.motion-toggle{width:28px}}
+.voice-visual>.visual-toolbar{height:64px;min-height:64px}.trace-button>span{line-height:1}
+@media(max-width:650px){.voice-visual>.visual-toolbar{height:50px;min-height:50px}}
