@@ -1,6 +1,6 @@
 # Mohan Krishna — Software & AI Engineering Portfolio
 
-A technical portfolio for software and AI engineering roles, with voice infrastructure, browser agents, retrieval-based action checks, production applications, and a simple résumé mode. Static HTML, CSS, and minimal JavaScript, with no framework or runtime dependencies.
+A technical portfolio for software and AI engineering roles, with voice infrastructure, browser agents, retrieval-based action checks, production applications, and a resume view. Static HTML, CSS, and minimal JavaScript, with no framework or runtime dependencies.
 
 ## Local development
 
@@ -15,10 +15,10 @@ Open the printed local URL. Use `PORT=4189 npm run dev` to choose another port.
 - `dist/index.html`: the main portfolio, project diagrams, and navigation.
 - `dist/styles.css`: charcoal interface, system typography, responsive layouts, and print styles.
 - `dist/app.js`: current-section indicator, copy email, local time, and printing.
-- `scripts/generate-pages.mjs`: project case studies and simple résumé. Run `npm run generate` after editing.
+- `scripts/generate-pages.mjs`: project case studies and resume. Run `npm run generate` after editing.
 - `scripts/resume-data.json`: shared content for the simple HTML résumé and downloadable PDF.
-- `scripts/simple-resume.mjs`: semantic, single-column résumé page at `/resume.html`.
-- `dist/resume.css` and `dist/resume.js`: independent light styling and an optional print control; no portfolio effects or external requests.
+- `scripts/resume-page.mjs`: semantic, single-column résumé page at `/resume.html`.
+- `dist/resume.css` and `dist/resume.js`: independent light styling and a PDF save shortcut; no portfolio effects or external requests.
 - `dist/assets/`: profile photo, original and generated résumé PDFs, favicon, and social preview image.
 
 `npm run check` checks local links, headings, landmarks, metadata, image alternatives, and required assets.
@@ -33,13 +33,13 @@ The project diagrams summarize documented architecture. The IntervieHire walkthr
 
 Experience and impact metrics come from the supplied `resume_sde_sep.pdf`. ReEntry and Precedent details are based on their public GitHub documentation, reviewed on 30 October 2026. The AI positioning describes application engineering, orchestration, retrieval, and evaluation work; it does not claim model training experience. Private repository content is not shipped.
 
-The simple résumé and its downloadable one-page PDF use the same content source. The PDF embeds its fonts and contains selectable text and clickable links. The supplied original is retained at `dist/assets/mohan-krishna-resume.pdf`. ATS support varies by application system.
+The resume and its downloadable one-page PDF use the same content source. The PDF embeds its fonts and contains selectable text and clickable links. The supplied original is retained at `dist/assets/mohan-krishna-original-resume.pdf`. ATS support varies by application system.
 
-## Simple résumé mode
+## Resume
 
-Use **Simple mode** in the portfolio header, or share [kirmada1509.github.io/resume.html](https://kirmada1509.github.io/resume.html) directly. The page has a white background, plain text, education, experience, projects, skills, and contact links. It has no animations, diagrams, weather, timers, or dependency on the portfolio script. All content and the PDF download work without JavaScript. **Portfolio** returns to the full site.
+Use **Resume** in the portfolio header, or share [kirmada1509.github.io/resume.html](https://kirmada1509.github.io/resume.html) directly. The page has a white background, plain text, education, experience, projects, skills, and contact links. It has no animations, diagrams, weather, timers, or dependency on the portfolio script. All content and the PDF download work without JavaScript. **Portfolio** returns to the full site.
 
-The optional **Print / save PDF** control invokes browser printing. **Download PDF** provides the generated résumé directly. After editing `scripts/resume-data.json`, regenerate both outputs:
+**Save resume** downloads the one-page PDF as `Mohan-Krishna-Resume.pdf`. Ctrl+S / Cmd+S use the same PDF download while this page is open. The save link works without JavaScript. After editing `scripts/resume-data.json`, regenerate both outputs:
 
 ```sh
 python3 scripts/generate-resume-pdf.py
@@ -66,4 +66,4 @@ The favicon and inline portfolio header share one custom peacock feather SVG. `s
 
 All profile text, education, availability, project descriptions, case studies, and resume content are in the HTML. No content is hidden for scroll reveals or created by animation. With JavaScript blocked, the site remains fully readable and navigable; only enhancement controls are hidden.
 
-In the full portfolio, motion is limited to decorative diagram outlines, the feather, link arrows, and a reading-progress indicator. Diagram sequences can be replayed; the voice walkthrough includes pause/resume, stepping, reset, and speed controls. Its example numbers are explicitly illustrative. There are no looping background animations. The **Motion** toggle stores a local preference, cancels active animations when off, and respects the operating system’s reduced-motion preference. Manual stepping remains available without motion. The simple résumé has no motion controls because it does not animate.
+In the full portfolio, motion is limited to decorative diagram outlines, the feather, link arrows, and a reading-progress indicator. Diagram sequences can be replayed; the voice walkthrough includes pause/resume, stepping, reset, and speed controls. Its example numbers are explicitly illustrative. There are no looping background animations. The **Motion** toggle stores a local preference, cancels active animations when off, and respects the operating system’s reduced-motion preference. Manual stepping remains available without motion. The resume has no motion controls because it does not animate.

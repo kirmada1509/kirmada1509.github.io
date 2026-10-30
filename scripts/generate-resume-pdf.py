@@ -1,4 +1,4 @@
-"""Generate the downloadable simple resume from the same data as its HTML view.
+"""Generate the downloadable resume from the same data as its HTML view.
 
 Run with a Python environment containing reportlab. The site itself has no Python
 dependency; the generated PDF is committed and its source hash is checked in CI.
@@ -20,7 +20,7 @@ import reportlab
 root = Path(__file__).resolve().parent.parent
 source = root / "scripts/resume-data.json"
 data = json.loads(source.read_text())
-target = root / "output/pdf/mohan-krishna-simple-resume.pdf"
+target = root / "output/pdf/mohan-krishna-resume.pdf"
 target.parent.mkdir(parents=True, exist_ok=True)
 digest = hashlib.sha256(source.read_bytes()).hexdigest()
 # Embed fonts so PDF viewers do not need an installed font or substitute one.
@@ -95,5 +95,7 @@ document = SimpleDocTemplate(str(target), pagesize=A4, rightMargin=36, leftMargi
     bottomMargin=30, title="Mohan Krishna - Software & AI Engineer - Resume", author=data["name"],
     subject="Resume source SHA-256: " + digest)
 document.build(story, onFirstPage=page_footer, onLaterPages=page_footer)
+(root / "dist/assets/mohan-krishna-resume.pdf").write_bytes(target.read_bytes())
+# Preserve existing public PDF links.
 (root / "dist/assets/mohan-krishna-simple-resume.pdf").write_bytes(target.read_bytes())
 print(f"Generated {target}")

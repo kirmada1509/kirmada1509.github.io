@@ -12,13 +12,13 @@ export function resumePage() {
   return `<!doctype html>
 <html lang="en" data-motion="off"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffffff"><meta name="color-scheme" content="light">
-<title>Mohan Krishna - Résumé</title><meta name="description" content="${esc(description)}"><link rel="canonical" href="${data.portfolio}resume.html">
-<meta property="og:type" content="profile"><meta property="og:title" content="Mohan Krishna - Résumé"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${data.portfolio}resume.html"><meta property="og:image" content="${data.portfolio}assets/social-card.png"><meta name="twitter:card" content="summary_large_image">
+<title>Mohan Krishna - Resume</title><meta name="description" content="${esc(description)}"><link rel="canonical" href="${data.portfolio}resume.html">
+<meta property="og:type" content="profile"><meta property="og:title" content="Mohan Krishna - Resume"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${data.portfolio}resume.html"><meta property="og:image" content="${data.portfolio}assets/social-card.png"><meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/resume.css"><script src="/resume.js" defer></script>
 <script type="application/ld+json">${JSON.stringify(person)}</script>
-</head><body class="simple-mode">
-<a class="skip-link" href="#main">Skip to résumé</a>
-<header class="resume-toolbar"><nav aria-label="View mode"><a href="/">Portfolio</a><a href="/resume.html" aria-current="page">Simple résumé</a></nav><div class="resume-tools"><button type="button" data-resume-print hidden>Print / save PDF</button><a href="/assets/mohan-krishna-simple-resume.pdf" download="Mohan-Krishna-Resume.pdf">Download PDF</a></div><noscript><p>Use your browser’s Print command to save this page as a PDF.</p></noscript></header>
+</head><body class="resume-view">
+<a class="skip-link" href="#main">Skip to resume</a>
+<header class="resume-toolbar"><nav aria-label="Page navigation"><a href="/">Portfolio</a><a href="/resume.html" aria-current="page">Resume</a></nav><div class="resume-tools"><a href="/assets/mohan-krishna-resume.pdf" download="Mohan-Krishna-Resume.pdf" data-resume-download>Save resume</a></div></header>
 <main id="main" class="resume-document">
 <header class="resume-identity"><h1>${esc(data.name)}</h1><p class="resume-role">${esc(data.role)}</p><p class="resume-degree"><strong>BITS Pilani</strong> · ${esc(data.education.course)} · ${esc(data.education.date)}</p><p class="resume-availability">${esc(data.availability)}</p>
 <address class="resume-contacts"><a href="mailto:${data.email}">${data.email}</a><a href="${data.phoneUrl}">${data.phone}</a><a href="${data.github}">github.com/kirmada1509</a><a href="${data.linkedin}">linkedin.com/in/mohan-krishna-karthik</a><a href="${data.portfolio}">kirmada1509.github.io</a></address></header>
