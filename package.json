@@ -1,0 +1,13 @@
+{
+  "name": "mohan-krishna-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A spring-inspired, accessible engineering portfolio for Mohan Krishna.",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "start": "node scripts/serve.mjs",
+    "generate": "node scripts/generate-pages.mjs",
+    "check": "node scripts/check.mjs"
+  }
+}

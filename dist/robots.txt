@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mohan-krishna-portfolio.kirmada-1509.chatgpt.site/sitemap.xml
