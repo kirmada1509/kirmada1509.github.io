@@ -323,14 +323,11 @@ async function initWeather() {
   };
   function valid(data) {
     const c = data?.current;
-    return [c?.time, c?.temperature_2m, c?.apparent_temperature, c?.relative_humidity_2m,
-      c?.wind_speed_10m, c?.weather_code, data?.daily?.sunset?.[0]].every(Number.isFinite);
+    return [c?.time, c?.temperature_2m, c?.weather_code].every(Number.isFinite);
   }
   function render(data) {
     const c = data.current;
-    const values = { temp: Math.round(c.temperature_2m), feels: `${Math.round(c.apparent_temperature)}°C`,
-      wind: `${c.wind_speed_10m.toFixed(1)} km/h`, humidity: `${Math.round(c.relative_humidity_2m)}%`,
-      sunset: clock(data.daily.sunset[0]), condition: conditions[c.weather_code] || 'Current weather',
+    const values = { temp: Math.round(c.temperature_2m), condition: conditions[c.weather_code] || 'Current weather',
       updated: `As of ${clock(c.time)} IST` };
     for (const panel of panels) {
       for (const [field, value] of Object.entries(values)) panel.querySelector(`[data-weather-${field}]`).textContent = value;
@@ -358,7 +355,7 @@ async function initWeather() {
     inFlight = true;
     try {
       // Fixed city coordinates, not visitor geolocation. Model-based current conditions.
-      const url = 'https://api.open-meteo.com/v1/forecast?latitude=28.36725&longitude=75.60352&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,weather_code,is_day&daily=sunset&forecast_days=1&timezone=Asia%2FKolkata&timeformat=unixtime';
+      const url = 'https://api.open-meteo.com/v1/forecast?latitude=28.36725&longitude=75.60352&current=temperature_2m,weather_code&timezone=Asia%2FKolkata&timeformat=unixtime';
       const response = await fetch(url, { signal: controller.signal, credentials: 'omit', referrerPolicy: 'no-referrer' });
       if (!response.ok) throw new Error('Weather request failed');
       const data = await response.json();

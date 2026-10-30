@@ -71,7 +71,7 @@ export function locationPanel(mobile = false) {
   return `<section class="location-panel${mobile ? ' location-mobile' : ' location-sidebar'}" data-location aria-label="Pilani local time and weather">
     <div class="local-heading"><span>PILANI, INDIA</span><span>UTC+05:30</span></div>
     <div class="local-clock"><time ${mobile ? 'data-local-time' : 'id="local-time"'}>IST</time><span data-local-date>India Standard Time</span></div>
-    <div class="weather-slot"><div class="weather-data" data-weather-body hidden><div class="weather-now"><strong><span data-weather-temp>—</span><small>°C</small></strong><span data-weather-condition></span></div><dl class="weather-metrics"><div><dt>FEELS</dt><dd data-weather-feels>—</dd></div><div><dt>WIND</dt><dd data-weather-wind>—</dd></div><div><dt>HUMIDITY</dt><dd data-weather-humidity>—</dd></div><div><dt>SUNSET</dt><dd data-weather-sunset>—</dd></div></dl></div><p data-weather-fallback>Weather unavailable</p></div>
+    <div class="weather-slot"><div class="weather-data" data-weather-body hidden><div class="weather-now"><strong><span data-weather-temp>—</span><small>°C</small></strong><span data-weather-condition></span></div></div><p data-weather-fallback>Weather unavailable</p></div>
     <p class="weather-source"><span data-weather-updated>Current conditions</span><a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo ↗</a></p>
   </section>`;
 }
