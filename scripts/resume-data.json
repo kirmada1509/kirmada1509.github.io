@@ -1,0 +1,96 @@
+{
+  "name": "Mohan Krishna",
+  "role": "Software & AI Engineer",
+  "availability": "Open to software and AI engineering roles and internships.",
+  "email": "f20240732@pilani.bits-pilani.ac.in",
+  "phone": "+91 6302539619",
+  "phoneUrl": "tel:+916302539619",
+  "github": "https://github.com/kirmada1509",
+  "linkedin": "https://www.linkedin.com/in/mohan-krishna-karthik/",
+  "portfolio": "https://kirmada1509.github.io/",
+  "education": {
+    "university": "Birla Institute of Technology and Science (BITS), Pilani",
+    "course": "B.E. Mathematics & Computing",
+    "date": "Expected May 2028",
+    "coursework": "Data Structures & Algorithms, Database Systems, Linear Algebra, Probability & Statistics, Optimization."
+  },
+  "experience": [
+    {
+      "title": "Engineering Lead",
+      "organization": "Students' Union Technical Team, BITS Pilani",
+      "date": "May 2026 - Present",
+      "bullets": [
+        "Lead 20 engineers across frontend, backend, mobile, and UI/UX to deliver campus products.",
+        "Introduced sprint planning, code reviews, and engineering standards; helped increase daily active users by approximately 45%."
+      ]
+    },
+    {
+      "title": "Software Engineering Intern",
+      "organization": "OBS Experiences, Dehradun",
+      "date": "May - July 2026",
+      "bullets": [
+        "Architected a modular NestJS backend spanning 12+ business domains, including authentication, bookings, and payments.",
+        "Shipped two production Next.js applications with shared components, reducing duplicate frontend code by 40%+.",
+        "Automated deployment across four repositories with GitLab CI/CD, Docker, and Nginx, reducing deployment time by 90%."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "IntervieHire - AI Interviewer",
+      "date": "Sep 2026",
+      "stack": "LiveKit Agents, Fastify, WebSockets, PostgreSQL",
+      "path": "/work/interviehire.html",
+      "bullets": [
+        "Migrated from Vapi to self-hosted LiveKit Agents with Deepgram STT, Silero VAD, and Cartesia TTS, reducing voice infrastructure cost by 58%+.",
+        "Built bidirectional session orchestration with server-authoritative timing and idempotent interview turns."
+      ]
+    },
+    {
+      "name": "ReEntry - Browser Task Agent",
+      "date": "Oct 2026 | Technical preview",
+      "stack": "TypeScript, browser extension, Ollama / NVIDIA inference",
+      "path": "/work/reentry.html",
+      "bullets": [
+        "Built evidence-linked task recovery, checkpoint history, draft recovery, and conflict protection with provider-independent inference and user correction; documented evaluation and accessibility limits."
+      ]
+    },
+    {
+      "name": "Precedent - Agent Action Checks",
+      "date": "Sep 2026 | Prototype",
+      "stack": "Python, Moss, hybrid retrieval",
+      "path": "/work/precedent.html",
+      "bullets": [
+        "Built retrieval over approved and blocked tool calls using signatures, argument evidence, and provenance; added human review and live feedback write-back, with synthetic held-out evaluation."
+      ]
+    },
+    {
+      "name": "OneTap Vendor",
+      "date": "Dec 2025 - Mar 2026",
+      "stack": "Go, Fyne, SQLite, sqlc",
+      "path": "/work/onetap.html",
+      "bullets": [
+        "Built offline-first campus billing serving 5,000+ students and supporting $1.2M+ annual payment volume, with retry/backoff synchronization, UPI QR payments, and automatic backups."
+      ]
+    },
+    {
+      "name": "BOSM - Sports Festival App",
+      "date": "Aug - Sep 2025",
+      "stack": "React Native, Expo, TypeScript",
+      "path": "/work/bosm.html",
+      "bullets": [
+        "Developed schedules, leaderboards, verification, and food ordering for 6,000+ participants; owned iOS and Android production releases through Expo EAS, App Store, and Google Play."
+      ]
+    }
+  ],
+  "skills": [
+    ["Languages", "Python, TypeScript/JavaScript, Go, C++, SQL"],
+    ["AI & real-time", "LiveKit Agents, Deepgram STT, Cartesia TTS, Silero VAD, Ollama, NVIDIA inference, Moss, hybrid retrieval, evaluation"],
+    ["Applications", "React, Next.js, React Native, NestJS, Fastify, FastAPI"],
+    ["Data & infrastructure", "PostgreSQL, Redis, SQLite, Docker, GitLab CI/CD, Nginx"]
+  ],
+  "achievements": [
+    "Top 10 campus finalist, Expedia Group Hackathon 2026: AI-powered multi-flight journey planner.",
+    "LeetCode contest rating: 1700+."
+  ]
+}
