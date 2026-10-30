@@ -1,6 +1,6 @@
-# Mohan Krishna — Software Engineering Portfolio
+# Mohan Krishna — Software & AI Engineering Portfolio
 
-A technical portfolio with a project index, architecture diagrams, engineering case studies, experience, and a printable text résumé. Static HTML, CSS, and minimal JavaScript. No framework or dependencies.
+A technical portfolio for software and AI engineering roles, with voice infrastructure, browser agents, retrieval-based action checks, production applications, and a printable text résumé. Static HTML, CSS, and minimal JavaScript. No framework or dependencies.
 
 ## Local development
 
@@ -28,10 +28,16 @@ The project diagrams summarize documented architecture; they are not screenshots
 
 ## Content provenance
 
-Experience and impact metrics come from the supplied `resume_sde_sep.pdf`. ReEntry and Precedent details are based on their public GitHub documentation, reviewed on 30 October 2026. Private repository content is not shipped.
+Experience and impact metrics come from the supplied `resume_sde_sep.pdf`. ReEntry and Precedent details are based on their public GitHub documentation, reviewed on 30 October 2026. The AI positioning describes application engineering, orchestration, retrieval, and evaluation work; it does not claim model training experience. Private repository content is not shipped.
 
 The downloadable PDF is the supplied original. The text résumé uses semantic HTML and print styles for readable and extractable content. ATS support varies by application system.
 
-## Hosting
+## GitHub Pages
 
-`dist/` works on any static web host. The existing Sites identity is preserved in `.openai/hosting.json`. No analytics, external font requests, or server-side services are required.
+Live site: [kirmada1509.github.io](https://kirmada1509.github.io/).
+
+The `pages.yml` workflow automatically deploys pushes to `main`. It generates the case studies and text résumé, runs the site checks, uploads `dist/`, and publishes through GitHub Pages. A deployment can also be started from the Actions tab with **Run workflow**.
+
+The repository is named `kirmada1509.github.io`, so absolute asset paths work at the site root. Canonical links, social metadata, the sitemap, and robots.txt use that primary domain.
+
+The existing Sites publication is retained as a second deployment of the same static source, with its identity in `.openai/hosting.json`. No analytics, external font requests, or server-side services are required.
