@@ -64,3 +64,5 @@ html[data-motion=off] *,html[data-motion=off] *:before,html[data-motion=off] *:a
 @media(max-width:375px){.motion-toggle{width:28px}}
 .voice-visual>.visual-toolbar{height:64px;min-height:64px}.trace-button>span{line-height:1}
 @media(max-width:650px){.voice-visual>.visual-toolbar{height:50px;min-height:50px}}
+.contact-phone-row{display:flex;align-items:center;flex-wrap:wrap;gap:12px 23px;margin-top:15px}.contact-phone{display:inline-flex;align-items:center;gap:10px;font-size:14px;color:#d6dae1}.contact-phone>span{font:9px var(--mono);letter-spacing:.3px;color:var(--faint)}.whatsapp-link{display:inline-flex;align-items:center;gap:9px;font-size:12px;color:#b7d6bf;padding:5px 10px;border:1px solid #3e5445;border-radius:4px;background:#1a251e}.whatsapp-link:hover{color:#e2f5e6;border-color:#769c80}.whatsapp-link>span{font-size:15px}.contact-socials{flex-wrap:wrap}
+@media(max-width:375px){.contact-phone-row{gap:12px 17px}.contact-phone{font-size:13px;gap:8px}.whatsapp-link{font-size:11px;padding:5px 8px}}
