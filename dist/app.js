@@ -80,6 +80,7 @@ let storedMotion;
 try { storedMotion = localStorage.getItem('portfolio-motion'); } catch { /* Storage is optional. */ }
 let motionEnabled = false;
 let pipelineController;
+let dotBackdropController;
 
 function remember(animation, group) {
   activeAnimations.add(animation);
@@ -132,6 +133,7 @@ function applyMotion() {
   }
   for (const button of traceButtons) button.hidden = !motionEnabled;
   pipelineController?.onMotionChange();
+  dotBackdropController?.onMotionChange();
   if (!motionEnabled) {
     for (const animation of activeAnimations) animation.cancel();
     activeAnimations.clear();
@@ -155,6 +157,7 @@ motionToggle?.addEventListener('click', () => {
 });
 reducedMotion.addEventListener('change', applyMotion);
 pipelineController = initPipeline();
+dotBackdropController = initDotBackdrop();
 applyMotion();
 
 for (const button of traceButtons) {
@@ -210,8 +213,48 @@ document.addEventListener('visibilitychange', () => {
   if (document.hidden) {
     for (const animation of activeAnimations) animation.cancel();
     pipelineController?.pause();
+    dotBackdropController?.reset();
   }
 });
+
+// SVG dot grid + radial pointer mask adapted from Magic UI (MIT).
+// Source details and the full licence: /assets/magic-ui-LICENSE.txt.
+// No frame runs while idle; text, layout and pointer targets are untouched.
+function initDotBackdrop() {
+  const reveal = document.querySelector('[data-dot-reveal]');
+  if (!reveal) return;
+  let frame = 0;
+  let x = 0;
+  let y = 0;
+  const enabled = () => motionEnabled && finePointer.matches && !document.hidden;
+
+  function reset() {
+    if (frame) cancelAnimationFrame(frame);
+    frame = 0;
+    reveal.dataset.active = 'false';
+  }
+
+  document.addEventListener('pointermove', event => {
+    if (!enabled() || event.pointerType !== 'mouse') return;
+    x = event.clientX;
+    y = event.clientY;
+    if (frame) return;
+    frame = requestAnimationFrame(() => {
+      frame = 0;
+      if (!enabled()) return;
+      reveal.style.setProperty('--dot-x', `${x}px`);
+      reveal.style.setProperty('--dot-y', `${y}px`);
+      if (reveal.dataset.active !== 'true') reveal.dataset.active = 'true';
+    });
+  }, { passive: true });
+
+  // Leaving the window, switching tabs, or disabling motion clears the glow.
+  window.addEventListener('pointerout', event => { if (!event.relatedTarget) reset(); });
+  window.addEventListener('blur', reset);
+  window.addEventListener('pagehide', reset);
+  finePointer.addEventListener('change', reset);
+  return { reset, onMotionChange() { if (!enabled()) reset(); } };
+}
 
 function initPipeline() {
   const demo = document.querySelector('[data-pipeline]');

@@ -2,6 +2,7 @@ import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { join } from 'node:path';
 import { decorateButtons, decorateDiagrams, pipelineDemo, locationPanel } from './site-components.mjs';
+import { dotBackdrop } from './dot-backdrop.mjs';
 
 // One vector source is shared by the favicon and the inline header symbol.
 export const brandMarkup = readFileSync('dist/assets/favicon.svg', 'utf8')
@@ -20,6 +21,8 @@ export function stampAssets() {
   for (const file of files('dist').filter(file => file.endsWith('.html'))) {
     let html = readFileSync(file, 'utf8');
     if (file === join('dist', 'index.html')) {
+      if (!html.includes('<!--dots:start-->')) html = html.replace('<body>', '<body data-dot-background>\n<!--dots:start--><!--dots:end-->');
+      html = html.replace(/<!--dots:start-->[\s\S]*?<!--dots:end-->/, `<!--dots:start-->${dotBackdrop}<!--dots:end-->`);
       html = html.replace(/<a class="header-resume"[^>]*>[\s\S]*?<\/a>/, resumeLink);
       html = html.replace(/<!--brand:start-->[\s\S]*?<!--brand:end-->/, `<!--brand:start-->${brandMarkup}<!--brand:end-->`);
       html = html.replace(/<!--pipeline:start-->[\s\S]*?<!--pipeline:end-->/, `<!--pipeline:start-->${pipelineDemo}<!--pipeline:end-->`);

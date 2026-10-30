@@ -123,3 +123,20 @@ html[data-motion=on] .wordmark:is(:hover,:focus-visible) .feather-sparks circle{
 @media print{.action-icon,.pipeline-controls,.pipeline-help,.location-panel,.diagram-replay{display:none!important}.pipeline-demo{background:white;border-color:#ccc}.pipeline-title,.step-copy strong{color:#111}.pipeline-disclaimer,.pipeline-readout,.step-copy small,.step-duration,.step-number{color:#333}.pipeline-steps>li{background:white;border-color:#bbb}.step-meter{display:none}}
 
 .sidebar-links a{gap:8px}.sidebar-links .action-icon{margin:0}
+
+/* DotPattern / MagicCard adaptation, Magic UI (MIT): /assets/magic-ui-LICENSE.txt. */
+body[data-dot-background]{isolation:isolate}
+.dot-backdrop{position:fixed;inset:0;z-index:-3;pointer-events:none;overflow:hidden;contain:strict}
+.dot-backdrop svg{display:block;width:100%;height:100%;stroke:none;fill:none}
+.dot-backdrop-base{color:#94a8ca;opacity:.18;background:radial-gradient(ellipse at 70% 8%,#17273d55,transparent 65%)}
+body[data-dot-background] .site-frame #main{position:relative}
+body[data-dot-background] .site-frame #main:before{content:'';position:absolute;inset:0;z-index:-2;background:#101113c4;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);pointer-events:none}
+.dot-backdrop-reveal{display:none;z-index:-1;opacity:0;color:#9fc0ff;transition:opacity .28s ease}
+@supports (mask-image:radial-gradient(circle,black,transparent)) or (-webkit-mask-image:radial-gradient(circle,black,transparent)){
+ .dot-backdrop-reveal{display:block;mask-image:radial-gradient(210px circle at var(--dot-x,-500px) var(--dot-y,-500px),#000 0%,#000c 30%,#0005 60%,transparent 100%);-webkit-mask-image:radial-gradient(210px circle at var(--dot-x,-500px) var(--dot-y,-500px),#000 0%,#000c 30%,#0005 60%,transparent 100%)}
+ html[data-motion=on] .dot-backdrop-reveal[data-active=true]{opacity:.7}
+ .dot-backdrop-reveal svg{filter:drop-shadow(0 0 3px #79cfff66)}
+ .dot-backdrop-reveal:before{content:'';position:absolute;inset:0;background:radial-gradient(210px circle at var(--dot-x,-500px) var(--dot-y,-500px),#79cfff0c,transparent 80%)}
+}
+@media(hover:none),(pointer:coarse),(prefers-reduced-motion:reduce){.dot-backdrop-reveal{display:none!important}}
+@media print{.dot-backdrop,body[data-dot-background] .site-frame #main:before{display:none!important}}

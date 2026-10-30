@@ -25,7 +25,7 @@ for(const page of pages){
 for(const match of readFileSync(join(root,'styles.css'),'utf8').matchAll(/url\(['"]?([^)'"\s]+)['"]?\)/g))if(match[1].startsWith('/')&&!existsSync(join(root,match[1])))errors.push(`Missing CSS asset: ${match[1]}`);
 const pdf=readFileSync(join(root,'assets/mohan-krishna-original-resume.pdf'));if(pdf.subarray(0,5).toString()!=='%PDF-')errors.push('Original resume is not a valid PDF file');
 const simple=readFileSync(join(root,'resume.html'),'utf8');
-if (/src="\/app\.js|reading-progress|data-motion-toggle|data-weather|data-pipeline/.test(simple))errors.push('Resume must be independent of portfolio effects and scripts');
+if (/src="\/app\.js|reading-progress|data-motion-toggle|data-weather|data-pipeline|data-dot-background|data-dot-reveal/.test(simple))errors.push('Resume must be independent of portfolio effects and scripts');
 const saveLink=simple.match(/<a\b[^>]*data-resume-download[^>]*>/)?.[0] || '';
 if (!simple.includes('href="/resume.css') || !/href="\/assets\/mohan-krishna-resume\.pdf(?:\?v=[a-f\d]+)?"/.test(saveLink) || !saveLink.includes('download="Mohan-Krishna-Resume.pdf"'))errors.push('Save resume must download the named PDF directly');
 if (/data-resume-print|Print \/ save PDF/.test(simple))errors.push('Resume save must not open the old print action');
