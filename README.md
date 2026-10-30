@@ -1,33 +1,37 @@
-# Mohan Krishna — Portfolio
+# Mohan Krishna — Software Engineering Portfolio
 
-A spring-inspired, responsive portfolio with a static HTML home page, four project journals, and a printable text résumé. Built with semantic HTML, CSS, and a little JavaScript. No dependencies or framework runtime.
+A technical portfolio with a project index, architecture diagrams, engineering case studies, experience, and a printable text résumé. Static HTML, CSS, and minimal JavaScript. No framework or dependencies.
 
-## Run locally
+## Local development
 
 ```sh
 npm run dev
 ```
 
-Open the printed local URL. Set `PORT=4189 npm run dev` if the default port is occupied.
+Open the printed local URL. Use `PORT=4189 npm run dev` to choose another port.
 
-## Edit
+## Content and design
 
-- `dist/index.html`: main portfolio content and custom project illustrations.
-- `dist/styles.css`: design, breakpoints, reduced motion, and print styles.
-- `dist/app.js`: mobile menu, copy email, local time, and print action.
-- `scripts/generate-pages.mjs`: content and templates for the project journals and text résumé. Run `npm run generate` after editing.
-- `dist/assets/`: optimized photo, original resume PDF, original landscape and flower SVGs, self-hosted fonts, and social preview image.
+- `dist/index.html`: the main portfolio, project diagrams, and navigation.
+- `dist/styles.css`: charcoal interface, system typography, responsive layouts, and print styles.
+- `dist/app.js`: current-section indicator, copy email, local time, and printing.
+- `scripts/generate-pages.mjs`: project case studies and text résumé. Run `npm run generate` after editing.
+- `dist/assets/`: profile photo, original resume PDF, favicon, and social preview image.
 
-Run `npm run check` to check local links, page landmarks, metadata, image alternatives, and required assets.
+`npm run check` checks local links, headings, landmarks, metadata, image alternatives, and required assets.
+
+## Design research
+
+The redesign follows direct introductions and project-focused content seen in [Emil Kowalski’s portfolio](https://emilkowal.ski/) and [Paco Coursey’s portfolio](https://paco.me/). Alignment, neutral surfaces, and clear hierarchy reference [Linear’s UI redesign](https://linear.app/now/how-we-redesigned-the-linear-ui). Body text and interface metadata have separate roles, as described by [Vercel’s typography system](https://vercel.com/geist/typography). The implementation uses native system sans and monospace fonts.
+
+The project diagrams summarize documented architecture; they are not screenshots, live status monitors, or benchmark output. There are no simulated metrics or fake activity logs.
 
 ## Content provenance
 
-Experience and impact metrics are drawn from the supplied `resume_sde_sep.pdf`. ReEntry and Precedent details are based on their public GitHub READMEs, reviewed on 30 October 2026. Project interface illustrations are original schematic views rather than screenshots; they are labelled accordingly. Private repositories and internal documents are not shipped.
+Experience and impact metrics come from the supplied `resume_sde_sep.pdf`. ReEntry and Precedent details are based on their public GitHub documentation, reviewed on 30 October 2026. Private repository content is not shipped.
 
-The downloadable PDF is the supplied original. The text résumé is a semantic HTML version, with dedicated print styles, for readable and extractable content; ATS compatibility varies by application system.
+The downloadable PDF is the supplied original. The text résumé uses semantic HTML and print styles for readable and extractable content. ATS support varies by application system.
 
 ## Hosting
 
-`dist/` can be hosted by any static web host. Sites identity and the static directory are declared in `.openai/hosting.json`. The site uses no trackers, external font requests, or server-side services.
-
-Fonts: DM Sans and DM Serif Display, distributed under the SIL Open Font License. See `dist/assets/OFL-DM-Sans.txt` and `dist/assets/OFL-DM-Serif-Display.txt`.
+`dist/` works on any static web host. The existing Sites identity is preserved in `.openai/hosting.json`. No analytics, external font requests, or server-side services are required.
