@@ -143,3 +143,29 @@ body[data-dot-background] .site-frame #main:before{content:'';position:absolute;
 .hero-typewriter-defs{position:absolute;top:0;left:0;width:0;height:0;overflow:hidden;pointer-events:none}
 .hero-typewriter-caret{position:absolute;width:1.5px;background:var(--accent);pointer-events:none;z-index:2}
 @media print{[data-typewriter]{clip-path:none!important;-webkit-clip-path:none!important}.hero-typewriter-defs,.hero-typewriter-caret{display:none!important}}
+
+/* The name's feather is independent of the heading and its typewriter mask. */
+.hero-profile>div:first-child{min-width:0}
+.hero-name{position:relative;width:max-content;max-width:100%}
+.feather-trigger{position:absolute;left:calc(100% + 9px);top:4px;z-index:2;display:grid;place-items:center;width:44px;height:52px;padding:4px;border:1px solid transparent;border-radius:10px;background:transparent;color:var(--text)}
+.feather-trigger .signature-feather{width:100%;height:100%;transform:rotate(18deg);transform-origin:50% 85%}
+.feather-trigger:hover,.feather-trigger[aria-expanded=true]{background:#16372c66;border-color:#3b6d5d}
+.feather-trigger:disabled{cursor:default}
+.feather-surprise[hidden]{display:none}
+.feather-surprise{position:fixed;z-index:60;width:min(336px,calc(100% - 24px));max-height:calc(100dvh - 24px);overflow-y:auto;overscroll-behavior:contain;padding:15px 20px 18px;border:1px solid #36544c;border-radius:14px;background:#121b19;box-shadow:0 18px 65px #0009;color:var(--text)}
+.feather-surprise-top,.feather-surprise-footer{display:flex;align-items:center;justify-content:space-between;gap:15px}
+.feather-surprise-top>span{font:9px var(--mono);letter-spacing:1.4px;color:#85baa7}
+.feather-close{display:grid;place-items:center;width:32px;height:32px;border:1px solid #35473f;border-radius:7px;background:transparent;font-size:22px;line-height:1;color:#b9c9c1}
+.feather-fan{position:relative;height:190px;overflow:hidden;margin:0 -8px 4px;border-radius:10px;background:radial-gradient(ellipse at 50% 80%,#19433566,transparent 65%)}
+.fan-feather{position:absolute;bottom:14px;left:calc(50% - 45px);width:90px;height:170px;transform:rotate(var(--fan-angle));transform-origin:50% 96%}
+.fan-feather .signature-feather{width:100%;height:100%}
+.peacock-body{position:absolute;bottom:3px;left:50%;width:64px;height:76px;transform:translateX(-50%);stroke-width:1.5}
+.feather-surprise h2{font-size:20px;line-height:1.3;letter-spacing:-.5px}
+.feather-secret{margin-top:8px;font:11px/1.7 var(--mono);color:#9ab9ac}
+.feather-surprise-footer{margin-top:20px;border-top:1px solid #2c4037;padding-top:13px}
+.feather-replay{padding:7px 11px;border:1px solid #3b6051;border-radius:6px;background:#1c3027;color:#c5e5d6;font:11px var(--mono)}
+.feather-surprise-footer>span{font:9px var(--mono);color:#98a99f}
+.feather-surprise kbd{font:inherit;border:1px solid #3b4a43;border-radius:3px;padding:2px 4px}
+@media(max-width:650px){.feather-trigger{width:34px;height:42px;padding:3px;left:auto;right:0;top:-40px}.feather-surprise h2{font-size:19px}}
+@media(max-width:375px){.feather-trigger{width:32px;height:40px}}
+@media print{.feather-trigger,.feather-surprise{display:none!important}}

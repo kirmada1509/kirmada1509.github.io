@@ -162,6 +162,7 @@ pipelineController = initPipeline();
 dotBackdropController = initDotBackdrop();
 heroTypingController = initHeroTyping();
 applyMotion();
+initFeatherSurprise();
 
 for (const button of traceButtons) {
   button.addEventListener('click', () => traceFlow(button.closest('.project-visual')));
@@ -565,4 +566,100 @@ async function initWeather() {
   refresh();
   setInterval(refresh, ttl);
   document.addEventListener('visibilitychange', () => { if (!document.hidden) refresh(); });
+}
+
+// A click-only surprise; the name remains ordinary, selectable heading text.
+function initFeatherSurprise() {
+  const trigger = document.querySelector('[data-feather-trigger]');
+  const panel = document.querySelector('#feather-surprise');
+  const title = document.querySelector('#hero-title');
+  if (!trigger || !panel || !title) return;
+  const closeButton = panel.querySelector('[data-feather-close]');
+  const feathers = [...panel.querySelectorAll('[data-fan-feather]')];
+  let animations = [];
+
+  function placeSignature() {
+    const range = document.createRange();
+    range.selectNodeContents(title);
+    const rects = [...range.getClientRects()].filter(rect => rect.width > 0 && rect.height > 0);
+    if (!rects.length) return;
+    // On narrow screens, follow the first line of the name rather than the box.
+    const firstLine = rects.filter(rect => Math.abs(rect.top - rects[0].top) < rects[0].height * .4);
+    const box = trigger.parentElement.getBoundingClientRect();
+    const right = Math.max(...firstLine.map(rect => rect.right));
+    const center = (Math.min(...firstLine.map(rect => rect.top)) + Math.max(...firstLine.map(rect => rect.bottom))) / 2;
+    const gap = innerWidth <= 650 ? 3 : 9;
+    trigger.style.left = `${right - box.left + gap}px`;
+    trigger.style.top = `${center - box.top - trigger.offsetHeight / 2}px`;
+  }
+
+  function placePanel() {
+    const rect = trigger.getBoundingClientRect();
+    const width = panel.offsetWidth;
+    const height = panel.offsetHeight;
+    const viewportWidth = document.documentElement.clientWidth;
+    const left = Math.max(12, Math.min(rect.left + rect.width / 2 - width / 2, viewportWidth - width - 12));
+    const below = rect.bottom + 12;
+    const top = below + height <= innerHeight - 12 ? below : Math.max(12, Math.min(rect.top - height - 12, innerHeight - height - 12));
+    panel.style.left = `${left}px`;
+    panel.style.top = `${top}px`;
+  }
+
+  function stop() {
+    for (const animation of animations) animation.cancel();
+    animations = [];
+  }
+
+  function play() {
+    stop();
+    if (!motionEnabled || document.hidden || !Element.prototype.animate) return;
+    for (const [index, feather] of feathers.entries()) {
+      const angle = feather.style.getPropertyValue('--fan-angle');
+      remember(feather.animate([
+        { transform: 'rotate(0deg) scale(.35)', opacity: 0 },
+        { transform: `rotate(${angle}) scale(1)`, opacity: 1 }
+      ], { duration: 720, delay: Math.abs(index - 3) * 55, easing: 'cubic-bezier(.2,.75,.25,1)', fill: 'backwards' }), animations);
+    }
+    remember(trigger.querySelector('svg').animate([
+      { transform: 'rotate(18deg)' }, { transform: 'rotate(-12deg)' },
+      { transform: 'rotate(28deg)' }, { transform: 'rotate(18deg)' }
+    ], { duration: 780, easing: 'ease-in-out' }), animations);
+  }
+
+  function close(returnFocus = true) {
+    stop();
+    panel.hidden = true;
+    trigger.setAttribute('aria-expanded', 'false');
+    if (returnFocus) trigger.focus({ preventScroll: true });
+  }
+
+  trigger.disabled = false;
+  placeSignature();
+  document.fonts?.ready.then(placeSignature);
+  trigger.addEventListener('click', () => {
+    heroTypingController?.finish();
+    panel.hidden = false;
+    panel.scrollTop = 0;
+    trigger.setAttribute('aria-expanded', 'true');
+    placePanel();
+    play();
+    closeButton.focus({ preventScroll: true });
+  });
+  closeButton.addEventListener('click', () => close());
+  panel.querySelector('[data-feather-replay]').addEventListener('click', play);
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !panel.hidden) {
+      event.preventDefault();
+      close();
+    }
+  });
+  document.addEventListener('pointerdown', event => {
+    if (!panel.hidden && !panel.contains(event.target) && !trigger.contains(event.target)) close(false);
+  });
+  addEventListener('resize', () => {
+    placeSignature();
+    if (!panel.hidden) placePanel();
+  });
+  addEventListener('scroll', () => { if (!panel.hidden) close(false); }, { passive: true });
+  addEventListener('pagehide', () => close(false));
 }
