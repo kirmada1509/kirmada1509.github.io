@@ -69,13 +69,20 @@ html[data-motion=off] *,html[data-motion=off] *:before,html[data-motion=off] *:a
 
 /* Peacock feather: one finite response to hover or keyboard focus. */
 .brand-mark{width:42px;height:42px}.feather-plume{transform-origin:32px 46px}.feather-sparks{opacity:1}.feather-sparks circle{opacity:0}
-html[data-motion=on] .wordmark:is(:hover,:focus-visible) .brand-mark{animation:feather-sway 1.5s cubic-bezier(.22,.75,.3,1) both}
-html[data-motion=on] .wordmark:is(:hover,:focus-visible) .feather-plume{animation:feather-unfurl 1.2s cubic-bezier(.2,.75,.25,1) both}
-html[data-motion=on] .wordmark:is(:hover,:focus-visible) .feather-barbs path{stroke-dasharray:65;animation:feather-thread .85s ease both;animation-delay:calc(var(--i)*90ms)}
-html[data-motion=on] .wordmark:is(:hover,:focus-visible) .feather-shaft{stroke-dasharray:35;animation:feather-thread .7s ease both}
-html[data-motion=on] .wordmark:is(:hover,:focus-visible) .feather-eye{animation:feather-eye 1.2s .15s ease both}
-html[data-motion=on] .wordmark:is(:hover,:focus-visible) .feather-glint{animation:feather-glint 1.15s .2s ease both}
-html[data-motion=on] .wordmark:is(:hover,:focus-visible) .feather-sparks circle{animation:feather-spark 1s ease both;animation-delay:calc(.25s + var(--i)*.12s)}
+html[data-motion=on] .wordmark:is(:hover,:focus-visible) .brand-mark,
+html[data-motion=on] .feather-trigger[aria-pressed=false]:is(:hover,:focus-visible) .signature-center .signature-feather{animation:feather-sway 1.5s cubic-bezier(.22,.75,.3,1) both}
+html[data-motion=on] .wordmark:is(:hover,:focus-visible) .feather-plume,
+html[data-motion=on] .feather-trigger[aria-pressed=false]:is(:hover,:focus-visible) .signature-center .feather-plume{animation:feather-unfurl 1.2s cubic-bezier(.2,.75,.25,1) both}
+html[data-motion=on] .wordmark:is(:hover,:focus-visible) .feather-barbs path,
+html[data-motion=on] .feather-trigger[aria-pressed=false]:is(:hover,:focus-visible) .signature-center .feather-barbs path{stroke-dasharray:65;animation:feather-thread .85s ease both;animation-delay:calc(var(--i)*90ms)}
+html[data-motion=on] .wordmark:is(:hover,:focus-visible) .feather-shaft,
+html[data-motion=on] .feather-trigger[aria-pressed=false]:is(:hover,:focus-visible) .signature-center .feather-shaft{stroke-dasharray:35;animation:feather-thread .7s ease both}
+html[data-motion=on] .wordmark:is(:hover,:focus-visible) .feather-eye,
+html[data-motion=on] .feather-trigger[aria-pressed=false]:is(:hover,:focus-visible) .signature-center .feather-eye{animation:feather-eye 1.2s .15s ease both}
+html[data-motion=on] .wordmark:is(:hover,:focus-visible) .feather-glint,
+html[data-motion=on] .feather-trigger[aria-pressed=false]:is(:hover,:focus-visible) .signature-center .feather-glint{animation:feather-glint 1.15s .2s ease both}
+html[data-motion=on] .wordmark:is(:hover,:focus-visible) .feather-sparks circle,
+html[data-motion=on] .feather-trigger[aria-pressed=false]:is(:hover,:focus-visible) .signature-center .feather-sparks circle{animation:feather-spark 1s ease both;animation-delay:calc(.25s + var(--i)*.12s)}
 @keyframes feather-sway{0%,100%{transform:rotate(0)}22%{transform:rotate(-7deg)}58%{transform:rotate(4deg)}80%{transform:rotate(-1deg)}}
 @keyframes feather-unfurl{0%{transform:scaleX(.83) rotate(-3deg)}52%{transform:scaleX(1.06) rotate(2deg)}100%{transform:scaleX(1) rotate(0)}}
 @keyframes feather-thread{0%{stroke-dashoffset:65}100%{stroke-dashoffset:0}}
