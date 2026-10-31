@@ -81,6 +81,7 @@ try { storedMotion = localStorage.getItem('portfolio-motion'); } catch { /* Stor
 let motionEnabled = false;
 let pipelineController;
 let dotBackdropController;
+let heroTypingController;
 
 function remember(animation, group) {
   activeAnimations.add(animation);
@@ -134,6 +135,7 @@ function applyMotion() {
   for (const button of traceButtons) button.hidden = !motionEnabled;
   pipelineController?.onMotionChange();
   dotBackdropController?.onMotionChange();
+  heroTypingController?.onMotionChange();
   if (!motionEnabled) {
     for (const animation of activeAnimations) animation.cancel();
     activeAnimations.clear();
@@ -158,6 +160,7 @@ motionToggle?.addEventListener('click', () => {
 reducedMotion.addEventListener('change', applyMotion);
 pipelineController = initPipeline();
 dotBackdropController = initDotBackdrop();
+heroTypingController = initHeroTyping();
 applyMotion();
 
 for (const button of traceButtons) {
@@ -214,8 +217,159 @@ document.addEventListener('visibilitychange', () => {
     for (const animation of activeAnimations) animation.cancel();
     pipelineController?.pause();
     dotBackdropController?.reset();
+    heroTypingController?.finish();
   }
 });
+
+// Reveal the existing, fully accessible text through SVG clips. The text is
+// never replaced, split into spans, or announced letter by letter. Native text
+// measurements preserve kerning, line wrapping, selection, and the layout.
+function initHeroTyping() {
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+  const targets = [
+    [hero.querySelector('#hero-title'), 32],
+    [hero.querySelector('.hero-role'), 20],
+    [hero.querySelector('.hero-description'), 7]
+  ];
+  if (targets.some(([element]) => !element)) return;
+  const ns = 'http://www.w3.org/2000/svg';
+  let attempted = false;
+  let running = false;
+  let frame = 0;
+  let svg;
+  let caret;
+  let pieces = [];
+
+  function finish() {
+    if (frame) cancelAnimationFrame(frame);
+    frame = 0;
+    running = false;
+    for (const piece of pieces) {
+      piece.element.style.removeProperty('clip-path');
+      piece.element.style.removeProperty('-webkit-clip-path');
+      piece.element.removeAttribute('data-typewriter');
+      piece.element.removeEventListener('pointerdown', finish);
+    }
+    pieces = [];
+    svg?.remove(); caret?.remove();
+    svg = null; caret = null;
+    hero.dataset.typingState = 'complete';
+    window.removeEventListener('resize', finish);
+    window.removeEventListener('beforeprint', finish);
+    window.removeEventListener('pagehide', finish);
+    document.removeEventListener('selectionchange', selectionChanged);
+  }
+
+  function selectionChanged() {
+    const selection = getSelection();
+    if (running && selection && !selection.isCollapsed && hero.contains(selection.anchorNode)) finish();
+  }
+
+  function start() {
+    if (!CSS.supports('clip-path', 'url(#hero-text-clip-0)')) { finish(); return; }
+    try {
+      const heroBox = hero.getBoundingClientRect();
+      const segmenter = typeof Intl.Segmenter === 'function' ? new Intl.Segmenter('en', { granularity: 'grapheme' }) : null;
+      // Read every position before applying any clipping or creating the caret.
+      pieces = targets.map(([element, delay], index) => {
+        const box = element.getBoundingClientRect();
+        const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+        const range = document.createRange();
+        const chars = [];
+        const rows = [];
+        let node;
+        while ((node = walker.nextNode())) {
+          let offset = 0;
+          const segments = segmenter ? [...segmenter.segment(node.data)].map(part => part.segment) : Array.from(node.data);
+          for (const character of segments) {
+            range.setStart(node, offset);
+            offset += character.length;
+            range.setEnd(node, offset);
+            const rect = [...range.getClientRects()].find(rect => rect.height > 0);
+            if (!rect) { if (chars.length) chars.push({ ...chars.at(-1) }); continue; }
+            const center = rect.top + rect.height / 2 - box.top;
+            let row = rows.findIndex(line => Math.abs(line.center - center) < 2);
+            if (row < 0) { row = rows.length; rows.push({ center }); }
+            chars.push({ row, x: Math.max(0, rect.right - box.left), y: rect.top - box.top, height: rect.height });
+          }
+        }
+        if (!chars.length) throw new Error('Text has no measurable characters');
+        return { element, delay, chars, rows, width: box.width, height: box.height, fontSize: parseFloat(getComputedStyle(element).fontSize),
+          x: box.left - heroBox.left, y: box.top - heroBox.top, id: `hero-text-clip-${index}`, count: -1 };
+      });
+
+      svg = document.createElementNS(ns, 'svg');
+      svg.classList.add('hero-typewriter-defs');
+      svg.setAttribute('aria-hidden', 'true'); svg.setAttribute('focusable', 'false');
+      const defs = document.createElementNS(ns, 'defs');
+      svg.append(defs);
+      let total = 0;
+      for (const piece of pieces) {
+        const clip = document.createElementNS(ns, 'clipPath');
+        clip.id = piece.id; clip.setAttribute('clipPathUnits', 'userSpaceOnUse');
+        piece.rows.forEach((row, index) => {
+          const top = index ? (piece.rows[index - 1].center + row.center) / 2 : 0;
+          const bottom = index + 1 < piece.rows.length ? (row.center + piece.rows[index + 1].center) / 2 : piece.height;
+          row.rect = document.createElementNS(ns, 'rect');
+          for (const [key, value] of Object.entries({ x: 0, y: top, width: 0, height: bottom - top })) row.rect.setAttribute(key, value);
+          clip.append(row.rect);
+        });
+        defs.append(clip);
+        piece.start = total;
+        total += piece.chars.length * piece.delay + 80;
+      }
+      document.body.append(svg);
+      caret = document.createElement('span');
+      caret.className = 'hero-typewriter-caret'; caret.setAttribute('aria-hidden', 'true');
+      hero.append(caret);
+      for (const piece of pieces) {
+        piece.element.dataset.typewriter = 'true';
+        piece.element.style.clipPath = `url(#${piece.id})`;
+        piece.element.style.webkitClipPath = `url(#${piece.id})`;
+        piece.element.addEventListener('pointerdown', finish);
+      }
+      running = true;
+      hero.dataset.typingState = 'running';
+      window.addEventListener('resize', finish);
+      window.addEventListener('beforeprint', finish);
+      window.addEventListener('pagehide', finish);
+      document.addEventListener('selectionchange', selectionChanged);
+      const began = performance.now();
+      function tick(now) {
+        frame = 0;
+        if (!running || !motionEnabled || document.hidden || now - began >= total) { finish(); return; }
+        const elapsed = now - began;
+        let current;
+        for (const piece of pieces) {
+          const count = Math.max(0, Math.min(piece.chars.length, Math.floor((elapsed - piece.start) / piece.delay) + 1));
+          if (count > 0) current = piece;
+          if (count === piece.count) continue;
+          piece.count = count;
+          const last = count ? piece.chars[count - 1] : null;
+          piece.rows.forEach((row, index) => row.rect.setAttribute('width',
+            !last || index > last.row ? 0 : index < last.row ? piece.width + 1 : last.x + .75));
+        }
+        if (current) {
+          const last = current.chars[current.count - 1];
+          const caretHeight = Math.max(10, Math.min(last.height, current.fontSize * .85));
+          caret.style.left = `${current.x + last.x + 1}px`;
+          caret.style.top = `${current.y + last.y + (last.height - caretHeight) / 2}px`;
+          caret.style.height = `${caretHeight}px`;
+        }
+        frame = requestAnimationFrame(tick);
+      }
+      tick(began);
+    } catch { finish(); }
+  }
+
+  return { finish, onMotionChange() {
+    if (!attempted) {
+      attempted = true;
+      if (motionEnabled && !document.hidden) start(); else finish();
+    } else if (!motionEnabled) finish();
+  } };
+}
 
 // SVG dot grid + radial pointer mask adapted from Magic UI (MIT).
 // Source details and the full licence: /assets/magic-ui-LICENSE.txt.

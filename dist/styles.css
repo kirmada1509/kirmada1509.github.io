@@ -133,10 +133,13 @@ body[data-dot-background] .site-frame #main{position:relative}
 body[data-dot-background] .site-frame #main:before{content:'';position:absolute;inset:0;z-index:-2;background:#101113c4;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);pointer-events:none}
 .dot-backdrop-reveal{display:none;z-index:-1;opacity:0;color:#9fc0ff;transition:opacity .28s ease}
 @supports (mask-image:radial-gradient(circle,black,transparent)) or (-webkit-mask-image:radial-gradient(circle,black,transparent)){
- .dot-backdrop-reveal{display:block;mask-image:radial-gradient(210px circle at var(--dot-x,-500px) var(--dot-y,-500px),#000 0%,#000c 30%,#0005 60%,transparent 100%);-webkit-mask-image:radial-gradient(210px circle at var(--dot-x,-500px) var(--dot-y,-500px),#000 0%,#000c 30%,#0005 60%,transparent 100%)}
- html[data-motion=on] .dot-backdrop-reveal[data-active=true]{opacity:.7}
- .dot-backdrop-reveal svg{filter:drop-shadow(0 0 3px #79cfff66)}
- .dot-backdrop-reveal:before{content:'';position:absolute;inset:0;background:radial-gradient(210px circle at var(--dot-x,-500px) var(--dot-y,-500px),#79cfff0c,transparent 80%)}
+ .dot-backdrop-reveal{display:block;mask-image:radial-gradient(145px circle at var(--dot-x,-500px) var(--dot-y,-500px),#000 0%,#000c 30%,#0005 60%,transparent 100%);-webkit-mask-image:radial-gradient(145px circle at var(--dot-x,-500px) var(--dot-y,-500px),#000 0%,#000c 30%,#0005 60%,transparent 100%)}
+ html[data-motion=on] .dot-backdrop-reveal[data-active=true]{opacity:.24}
 }
 @media(hover:none),(pointer:coarse),(prefers-reduced-motion:reduce){.dot-backdrop-reveal{display:none!important}}
 @media print{.dot-backdrop,body[data-dot-background] .site-frame #main:before{display:none!important}}
+
+/* The text itself remains intact; these nodes only clip its initial paint. */
+.hero-typewriter-defs{position:absolute;top:0;left:0;width:0;height:0;overflow:hidden;pointer-events:none}
+.hero-typewriter-caret{position:absolute;width:1.5px;background:var(--accent);pointer-events:none;z-index:2}
+@media print{[data-typewriter]{clip-path:none!important;-webkit-clip-path:none!important}.hero-typewriter-defs,.hero-typewriter-caret{display:none!important}}
