@@ -573,8 +573,11 @@ function initFeatherSurprise() {
   const trigger = document.querySelector('[data-feather-trigger]');
   const title = document.querySelector('#hero-title');
   if (!trigger || !title) return;
+  const profile = trigger.closest('.hero-profile');
+  const photo = profile.querySelector('.profile-photo');
 
   function placeSignature() {
+    profile.style.removeProperty('padding-bottom');
     const range = document.createRange();
     range.selectNodeContents(title);
     const rects = [...range.getClientRects()].filter(rect => rect.width > 0 && rect.height > 0);
@@ -587,12 +590,36 @@ function initFeatherSurprise() {
     const gap = innerWidth <= 650 ? 3 : 9;
     trigger.style.left = `${right - box.left + gap}px`;
     trigger.style.top = `${center - box.top - trigger.offsetHeight / 2}px`;
+
+    const baseLeft = right + gap;
+    const baseTop = center - trigger.offsetHeight / 2;
+    const availableWidth = photo.getBoundingClientRect().left - baseLeft - 16;
+    const canStayBesideName = innerWidth > 650 && availableWidth >= trigger.offsetWidth * 2.8;
+    let scale, x = 0, y = 0;
+    if (canStayBesideName) {
+      scale = Math.min(4, availableWidth / trigger.offsetWidth);
+    } else {
+      // Give the large artwork its own inline space on narrow screens.
+      const bounds = profile.getBoundingClientRect();
+      scale = Math.min(3.5, (bounds.width - 24) / trigger.offsetWidth);
+      const width = trigger.offsetWidth * scale;
+      const height = trigger.offsetHeight * scale;
+      const destinationLeft = photo.getBoundingClientRect().right - width;
+      const destinationTop = bounds.bottom + 12;
+      x = destinationLeft - baseLeft;
+      y = destinationTop - (baseTop + trigger.offsetHeight / 2 - height / 2);
+      if (trigger.getAttribute('aria-pressed') === 'true') profile.style.paddingBottom = `${height + 24}px`;
+    }
+    trigger.style.setProperty('--peacock-scale', scale);
+    trigger.style.setProperty('--peacock-x', `${x}px`);
+    trigger.style.setProperty('--peacock-y', `${y}px`);
   }
 
   function setPeacock(open) {
     trigger.setAttribute('aria-pressed', String(open));
     trigger.setAttribute('aria-label', open ? 'Fold peacock back into a feather' : 'Reveal peacock easter egg');
     trigger.title = open ? 'Peacock unlocked · click to fold' : 'A little surprise';
+    placeSignature();
   }
 
   trigger.disabled = false;

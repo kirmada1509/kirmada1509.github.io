@@ -147,8 +147,7 @@ body[data-dot-background] .site-frame #main:before{content:'';position:absolute;
 /* The signature unfolds in place; the heading and its layout stay untouched. */
 .hero-profile>div:first-child{min-width:0}
 .hero-name{position:relative;width:max-content;max-width:100%}
-.feather-trigger{position:absolute;left:calc(100% + 9px);top:4px;z-index:2;display:grid;place-items:center;width:44px;height:52px;padding:4px;border:1px solid transparent;border-radius:10px;background:transparent;color:var(--text)}
-.feather-trigger:hover{background:#16372c44;border-color:#3b6d5d}
+.feather-trigger{position:absolute;left:calc(100% + 9px);top:4px;z-index:2;display:grid;place-items:center;width:44px;height:52px;padding:4px;border:0;background:transparent;color:var(--text);transform:translate(0,0) scale(1);transform-origin:0 50%}
 .feather-trigger:disabled{cursor:default}
 .peacock-signature{position:absolute;inset:0;--tail-scale:.58}
 .signature-plume{position:absolute;inset:0;transform-origin:50% 96%;transform:rotate(18deg);opacity:0}
@@ -158,8 +157,8 @@ body[data-dot-background] .site-frame #main:before{content:'';position:absolute;
 .feather-trigger[aria-pressed=true] .signature-plume{opacity:1;transform:translateY(-16%) rotate(var(--fan-angle)) scale(.45,var(--tail-scale))}
 .feather-trigger[aria-pressed=true] .signature-bird{opacity:1;transform:translate(-50%,0) scale(1)}
 .feather-trigger[aria-pressed=true] .feather-barbs{opacity:0}
-html[data-motion=on] .feather-trigger{transition:transform .55s ease}
-@media(min-width:901px){.feather-trigger[aria-pressed=true]{transform:scale(1.4);transform-origin:0 50%}}
+.feather-trigger[aria-pressed=true]{transform:translate(var(--peacock-x,0px),var(--peacock-y,0px)) scale(var(--peacock-scale,4))}
+html[data-motion=on] .feather-trigger{transition:transform .8s cubic-bezier(.16,1,.3,1)}
 html[data-motion=on] .signature-plume{transition:transform .65s cubic-bezier(.2,.75,.25,1),opacity .25s ease;transition-delay:var(--fan-delay)}
 html[data-motion=on] .signature-bird{transition:transform .5s ease,opacity .3s ease}
 @media(max-width:650px){.feather-trigger{width:34px;height:42px;padding:3px;left:auto;right:0;top:-40px}.peacock-signature{--tail-scale:.48}}
