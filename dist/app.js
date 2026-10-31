@@ -568,15 +568,11 @@ async function initWeather() {
   document.addEventListener('visibilitychange', () => { if (!document.hidden) refresh(); });
 }
 
-// A click-only surprise; the name remains ordinary, selectable heading text.
+// The same center feather becomes one plume of a peacock, in place.
 function initFeatherSurprise() {
   const trigger = document.querySelector('[data-feather-trigger]');
-  const panel = document.querySelector('#feather-surprise');
   const title = document.querySelector('#hero-title');
-  if (!trigger || !panel || !title) return;
-  const closeButton = panel.querySelector('[data-feather-close]');
-  const feathers = [...panel.querySelectorAll('[data-fan-feather]')];
-  let animations = [];
+  if (!trigger || !title) return;
 
   function placeSignature() {
     const range = document.createRange();
@@ -593,44 +589,10 @@ function initFeatherSurprise() {
     trigger.style.top = `${center - box.top - trigger.offsetHeight / 2}px`;
   }
 
-  function placePanel() {
-    const rect = trigger.getBoundingClientRect();
-    const width = panel.offsetWidth;
-    const height = panel.offsetHeight;
-    const viewportWidth = document.documentElement.clientWidth;
-    const left = Math.max(12, Math.min(rect.left + rect.width / 2 - width / 2, viewportWidth - width - 12));
-    const below = rect.bottom + 12;
-    const top = below + height <= innerHeight - 12 ? below : Math.max(12, Math.min(rect.top - height - 12, innerHeight - height - 12));
-    panel.style.left = `${left}px`;
-    panel.style.top = `${top}px`;
-  }
-
-  function stop() {
-    for (const animation of animations) animation.cancel();
-    animations = [];
-  }
-
-  function play() {
-    stop();
-    if (!motionEnabled || document.hidden || !Element.prototype.animate) return;
-    for (const [index, feather] of feathers.entries()) {
-      const angle = feather.style.getPropertyValue('--fan-angle');
-      remember(feather.animate([
-        { transform: 'rotate(0deg) scale(.35)', opacity: 0 },
-        { transform: `rotate(${angle}) scale(1)`, opacity: 1 }
-      ], { duration: 720, delay: Math.abs(index - 3) * 55, easing: 'cubic-bezier(.2,.75,.25,1)', fill: 'backwards' }), animations);
-    }
-    remember(trigger.querySelector('svg').animate([
-      { transform: 'rotate(18deg)' }, { transform: 'rotate(-12deg)' },
-      { transform: 'rotate(28deg)' }, { transform: 'rotate(18deg)' }
-    ], { duration: 780, easing: 'ease-in-out' }), animations);
-  }
-
-  function close(returnFocus = true) {
-    stop();
-    panel.hidden = true;
-    trigger.setAttribute('aria-expanded', 'false');
-    if (returnFocus) trigger.focus({ preventScroll: true });
+  function setPeacock(open) {
+    trigger.setAttribute('aria-pressed', String(open));
+    trigger.setAttribute('aria-label', open ? 'Fold peacock back into a feather' : 'Reveal peacock easter egg');
+    trigger.title = open ? 'Peacock unlocked · click to fold' : 'A little surprise';
   }
 
   trigger.disabled = false;
@@ -638,28 +600,13 @@ function initFeatherSurprise() {
   document.fonts?.ready.then(placeSignature);
   trigger.addEventListener('click', () => {
     heroTypingController?.finish();
-    panel.hidden = false;
-    panel.scrollTop = 0;
-    trigger.setAttribute('aria-expanded', 'true');
-    placePanel();
-    play();
-    closeButton.focus({ preventScroll: true });
+    setPeacock(trigger.getAttribute('aria-pressed') !== 'true');
   });
-  closeButton.addEventListener('click', () => close());
-  panel.querySelector('[data-feather-replay]').addEventListener('click', play);
-  document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && !panel.hidden) {
+  trigger.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && trigger.getAttribute('aria-pressed') === 'true') {
       event.preventDefault();
-      close();
+      setPeacock(false);
     }
   });
-  document.addEventListener('pointerdown', event => {
-    if (!panel.hidden && !panel.contains(event.target) && !trigger.contains(event.target)) close(false);
-  });
-  addEventListener('resize', () => {
-    placeSignature();
-    if (!panel.hidden) placePanel();
-  });
-  addEventListener('scroll', () => { if (!panel.hidden) close(false); }, { passive: true });
-  addEventListener('pagehide', () => close(false));
+  addEventListener('resize', placeSignature);
 }
