@@ -67,28 +67,7 @@ html[data-motion=off] *,html[data-motion=off] *:before,html[data-motion=off] *:a
 .contact-phone-row{display:flex;align-items:center;flex-wrap:wrap;gap:12px 23px;margin-top:15px}.contact-phone{display:inline-flex;align-items:center;gap:10px;font-size:14px;color:#d6dae1}.contact-phone>span{font:9px var(--mono);letter-spacing:.3px;color:var(--faint)}.whatsapp-link{display:inline-flex;align-items:center;gap:9px;font-size:12px;color:#b7d6bf;padding:5px 10px;border:1px solid #3e5445;border-radius:4px;background:#1a251e}.whatsapp-link:hover{color:#e2f5e6;border-color:#769c80}.whatsapp-link>span{font-size:15px}.contact-socials{flex-wrap:wrap}
 @media(max-width:375px){.contact-phone-row{gap:12px 17px}.contact-phone{font-size:13px;gap:8px}.whatsapp-link{font-size:11px;padding:5px 8px}}
 
-/* Peacock feather: one finite response to hover or keyboard focus. */
-.brand-mark{width:42px;height:42px}.feather-plume{transform-origin:32px 46px}.feather-sparks{opacity:1}.feather-sparks circle{opacity:0}
-html[data-motion=on] .wordmark:is(:hover,:focus-visible) .brand-mark,
-html[data-motion=on] .feather-trigger[aria-pressed=false]:is(:hover,:focus-visible) .signature-center .signature-feather{animation:feather-sway 1.5s cubic-bezier(.22,.75,.3,1) both}
-html[data-motion=on] .wordmark:is(:hover,:focus-visible) .feather-plume,
-html[data-motion=on] .feather-trigger[aria-pressed=false]:is(:hover,:focus-visible) .signature-center .feather-plume{animation:feather-unfurl 1.2s cubic-bezier(.2,.75,.25,1) both}
-html[data-motion=on] .wordmark:is(:hover,:focus-visible) .feather-barbs path,
-html[data-motion=on] .feather-trigger[aria-pressed=false]:is(:hover,:focus-visible) .signature-center .feather-barbs path{stroke-dasharray:65;animation:feather-thread .85s ease both;animation-delay:calc(var(--i)*90ms)}
-html[data-motion=on] .wordmark:is(:hover,:focus-visible) .feather-shaft,
-html[data-motion=on] .feather-trigger[aria-pressed=false]:is(:hover,:focus-visible) .signature-center .feather-shaft{stroke-dasharray:35;animation:feather-thread .7s ease both}
-html[data-motion=on] .wordmark:is(:hover,:focus-visible) .feather-eye,
-html[data-motion=on] .feather-trigger[aria-pressed=false]:is(:hover,:focus-visible) .signature-center .feather-eye{animation:feather-eye 1.2s .15s ease both}
-html[data-motion=on] .wordmark:is(:hover,:focus-visible) .feather-glint,
-html[data-motion=on] .feather-trigger[aria-pressed=false]:is(:hover,:focus-visible) .signature-center .feather-glint{animation:feather-glint 1.15s .2s ease both}
-html[data-motion=on] .wordmark:is(:hover,:focus-visible) .feather-sparks circle,
-html[data-motion=on] .feather-trigger[aria-pressed=false]:is(:hover,:focus-visible) .signature-center .feather-sparks circle{animation:feather-spark 1s ease both;animation-delay:calc(.25s + var(--i)*.12s)}
-@keyframes feather-sway{0%,100%{transform:rotate(0)}22%{transform:rotate(-7deg)}58%{transform:rotate(4deg)}80%{transform:rotate(-1deg)}}
-@keyframes feather-unfurl{0%{transform:scaleX(.83) rotate(-3deg)}52%{transform:scaleX(1.06) rotate(2deg)}100%{transform:scaleX(1) rotate(0)}}
-@keyframes feather-thread{0%{stroke-dashoffset:65}100%{stroke-dashoffset:0}}
-@keyframes feather-eye{0%,100%{filter:drop-shadow(0 0 0 transparent)}45%{filter:drop-shadow(0 0 4px #38bbcc80)}}
-@keyframes feather-glint{0%,100%{transform:translate(0,0)}40%{transform:translate(2px,-1px)}}
-@keyframes feather-spark{0%{opacity:0;transform:translate(0,2px)}35%{opacity:.85}100%{opacity:0;transform:translate(var(--dx),-8px)}}
+.brand-mark{width:42px;height:42px}
 
 /* All action labels stay as selectable, ordinary text next to the symbols. */
 .action-icon{width:14px;height:14px;display:inline-block;flex:none;vertical-align:-2px;margin-right:7px;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;fill:none;stroke:currentColor}
@@ -151,23 +130,5 @@ body[data-dot-background] .site-frame #main:before{content:'';position:absolute;
 .hero-typewriter-caret{position:absolute;width:1.5px;background:var(--accent);pointer-events:none;z-index:2}
 @media print{[data-typewriter]{clip-path:none!important;-webkit-clip-path:none!important}.hero-typewriter-defs,.hero-typewriter-caret{display:none!important}}
 
-/* The signature unfolds in place; the heading and its layout stay untouched. */
 .hero-profile>div:first-child{min-width:0}
 .hero-name{position:relative;width:max-content;max-width:100%}
-.feather-trigger{position:absolute;left:calc(100% + 9px);top:4px;z-index:2;display:grid;place-items:center;width:44px;height:52px;padding:4px;border:0;background:transparent;color:var(--text);transform:translate(0,0) scale(1);transform-origin:0 50%}
-.feather-trigger:disabled{cursor:default}
-.peacock-signature{position:absolute;inset:0;--tail-scale:.58}
-.signature-plume{position:absolute;inset:0;transform-origin:50% 96%;transform:rotate(18deg);opacity:0}
-.signature-plume .signature-feather{width:100%;height:100%}
-.signature-center{opacity:1}
-.signature-bird{position:absolute;bottom:-4%;left:50%;width:76%;height:66%;opacity:0;transform:translate(-50%,7px) scale(.6)}
-.feather-trigger[aria-pressed=true] .signature-plume{opacity:1;transform:translateY(-16%) rotate(var(--fan-angle)) scale(.45,var(--tail-scale))}
-.feather-trigger[aria-pressed=true] .signature-bird{opacity:1;transform:translate(-50%,0) scale(1)}
-.feather-trigger[aria-pressed=true] .feather-barbs{opacity:0}
-.feather-trigger[aria-pressed=true]{transform:translate(var(--peacock-x,0px),var(--peacock-y,0px)) scale(var(--peacock-scale,4))}
-html[data-motion=on] .feather-trigger{transition:transform .8s cubic-bezier(.16,1,.3,1)}
-html[data-motion=on] .signature-plume{transition:transform .65s cubic-bezier(.2,.75,.25,1),opacity .25s ease;transition-delay:var(--fan-delay)}
-html[data-motion=on] .signature-bird{transition:transform .5s ease,opacity .3s ease}
-@media(max-width:650px){.feather-trigger{width:34px;height:42px;padding:3px;left:auto;right:0;top:-40px}.peacock-signature{--tail-scale:.48}}
-@media(max-width:375px){.feather-trigger{width:32px;height:40px}}
-@media print{.feather-trigger{display:none!important}}

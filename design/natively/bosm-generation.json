@@ -1,0 +1,21 @@
+{
+  "mode": "built-in image_gen",
+  "created": "2026-11-05",
+  "purpose": "Generated BOSM ’25 sports-app interface concepts for the portfolio; illustrative designs, not captures of the released app.",
+  "images": [
+    {
+      "path": "/Users/krishna/portfolio/spring-portfolio/dist/assets/bosm/match-day-concept.png",
+      "prompt": "Use case: ui-mockup. Create a premium high-fidelity mobile app screenshot inside ONE front-facing modern black smartphone with slim bezel, rounded corners, subtle realistic edge highlights, and small dynamic-island camera. Portrait image, phone occupies almost all canvas with modest clear margins. Genuine transparent background, no backdrop or shadow rectangle. This is a CONCEPT UI for BOSM ’25, the BITS Pilani university sports festival app. Modern polished sports editorial design: deep midnight navy, warm cream text, vivid coral-orange accents, restrained teal indicators; clean bold sans serif, very legible coherent English. Screen: top status 9:41, small BOSM ’25 wordmark, BITS PILANI, small profile circle. Large title 'Let the games begin.' Orange live badge. Beautiful basketball-action sports photography in a large rounded hero card, 'BASKETBALL', 'LIVE NOW', scoreboard 'BITS PILANI 48 — 42 IIT DELHI', 'Q3 · 04:32'. Below, title 'Your match day', small rounded chips 'All sports', 'Football', 'Basketball'. Two compact clean upcoming match rows: 'Football · 16:00', 'Volleyball · 17:30', small team icons and court detail. Bottom navigation Home, Schedule, Scores, Profile with crisp consistent icons, Home highlighted coral. Functional professional mobile layout with realistic spacing, no impossible UI elements, no extra floating cards outside phone. Do not add fish or ocean imagery; this is a campus sports festival. Entire single phone visible, straight-on, no perspective, no caption or text outside phone."
+    },
+    {
+      "path": "/Users/krishna/portfolio/spring-portfolio/dist/assets/bosm/leaderboard-concept.png",
+      "prompt": "Use case: ui-mockup. Create a premium high-fidelity mobile app screenshot inside ONE front-facing modern black smartphone with slim bezel, rounded corners, subtle realistic edge highlights, and small dynamic-island camera. Portrait image, phone occupies almost all canvas with modest clear margins. Genuine transparent background, no backdrop or shadow rectangle. This is the LEADERBOARD screen of a CONCEPT mobile app for BOSM ’25, BITS Pilani university sports festival. Match a modern sports app palette: deep midnight navy background, warm cream text, vivid coral-orange active controls, restrained teal highlights. Crisp bold sans serif typography and exceptionally coherent legible English. Top status 9:41, wordmark BOSM ’25, small bell icon. Large heading 'The leaderboard.' Small line 'Every point. Every podium.' Segmented tabs 'Overall', 'By sport', 'Medals' with Overall active coral. Beautiful stylized golden small trophy graphic. A neat podium of three university teams with BITS Pilani center ranked 1 and 128 points, IIT Delhi left ranked 2 and 112 points, IIT Bombay right ranked 3 and 98 points; circular letter crest icons, tasteful coral ring around rank1. Below the podium a clean leaderboard table heading 'STANDINGS', columns 'TEAM' and 'POINTS', rows 01 BITS Pilani 128, 02 IIT Delhi 112, 03 IIT Bombay 98, 04 DTU 84. Small green live-updates dot and 'Updated just now'. Bottom navigation Home, Schedule, Scores, Profile with Scores highlighted coral. Product design quality, considered spacing, no generic dashboard clutter. Do not add fish or ocean imagery. Entire single phone visible, straight-on, no perspective, no captions or text outside phone."
+    }
+  ],
+  "hero": {
+    "tagline": "Skill in action.",
+    "phrase": "योगः कर्मसु कौशलम्",
+    "source": "https://heritage.iitk.ac.in/SBG/2.50",
+    "note": "English hero line is an adaptation of the verse’s phrase; attribution is shown as inspired by Bhagavad Gita 2.50."
+  }
+}

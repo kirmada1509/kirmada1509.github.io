@@ -37,11 +37,11 @@ styles = {
     "name": ParagraphStyle("Name", fontName="Helvetica-Bold", fontSize=23, leading=26, spaceAfter=3),
     "role": ParagraphStyle("Role", fontName="Helvetica", fontSize=11.5, leading=15, spaceAfter=3),
     "contact": ParagraphStyle("Contact", fontName="Helvetica", fontSize=8.5, leading=11.3),
-    "section": ParagraphStyle("Section", fontName="Helvetica-Bold", fontSize=10.5, leading=14, spaceBefore=6, spaceAfter=4, keepWithNext=True, borderWidth=0, borderPadding=0),
+    "section": ParagraphStyle("Section", fontName="Helvetica-Bold", fontSize=10.5, leading=14, spaceBefore=5, spaceAfter=3, keepWithNext=True, borderWidth=0, borderPadding=0),
     "heading": ParagraphStyle("Heading", fontName="Helvetica-Bold", fontSize=10, leading=12.6, keepWithNext=True),
     "detail": ParagraphStyle("Detail", fontName="Helvetica", fontSize=8.8, leading=11.2, textColor=colors.HexColor("#3b3b3b"), keepWithNext=True),
-    "body": ParagraphStyle("Body", fontName="Helvetica", fontSize=9.8, leading=12.4, alignment=TA_LEFT),
-    "bullet": ParagraphStyle("Bullet", fontName="Helvetica", fontSize=9.8, leading=12.4, leftIndent=10, firstLineIndent=0, bulletIndent=0, spaceBefore=1),
+    "body": ParagraphStyle("Body", fontName="Helvetica", fontSize=9.5, leading=11.8, alignment=TA_LEFT),
+    "bullet": ParagraphStyle("Bullet", fontName="Helvetica", fontSize=9.5, leading=11.8, leftIndent=10, firstLineIndent=0, bulletIndent=0, spaceBefore=1),
 }
 for style in styles.values():
     style.fontName = style.fontName.replace('Helvetica', 'ResumeSans')
@@ -87,15 +87,18 @@ def page_footer(canvas, doc):
     canvas.saveState()
     canvas.setFont("ResumeSans", 7)
     canvas.setFillColor(colors.HexColor("#555555"))
-    canvas.drawString(36, 18, "Mohan Krishna | Resume")
+    canvas.drawString(36, 18, "Mohan Krishna | Resume v2")
     canvas.drawRightString(A4[0] - 36, 18, str(doc.page))
     canvas.restoreState()
 
 document = SimpleDocTemplate(str(target), pagesize=A4, rightMargin=36, leftMargin=36, topMargin=30,
-    bottomMargin=30, title="Mohan Krishna - Software & AI Engineer - Resume", author=data["name"],
+    bottomMargin=30, title="Mohan Krishna - Software & AI Engineer - Resume v2", author=data["name"],
     subject="Resume source SHA-256: " + digest)
 document.build(story, onFirstPage=page_footer, onLaterPages=page_footer)
 (root / "dist/assets/mohan-krishna-resume.pdf").write_bytes(target.read_bytes())
 # Preserve existing public PDF links.
 (root / "dist/assets/mohan-krishna-simple-resume.pdf").write_bytes(target.read_bytes())
 print(f"Generated {target}")
+
+(root / "dist/assets/mohan-krishna-resume-v2.pdf").write_bytes(target.read_bytes())
+(root / "output/pdf/mohan-krishna-resume-v2.pdf").write_bytes(target.read_bytes())

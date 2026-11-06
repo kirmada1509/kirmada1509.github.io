@@ -7,3 +7,13 @@ document.addEventListener('keydown', event => {
   event.preventDefault();
   if (!event.repeat) resumeDownload.click();
 });
+
+const resumeTheme = document.querySelector('[data-resume-theme]');
+const theme = window.portfolioTheme;
+if (resumeTheme && theme) {
+  const updateThemeButton = () => resumeTheme.setAttribute('aria-pressed', theme.isDark());
+  updateThemeButton();
+  theme.subscribe(updateThemeButton);
+  resumeTheme.addEventListener('click', theme.toggle);
+  resumeTheme.hidden = false;
+}

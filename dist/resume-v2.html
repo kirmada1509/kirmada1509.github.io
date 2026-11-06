@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" class="dark" data-motion="off"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><script>(function initializeTheme() {
+  const key = 'portfolio-theme';
+  const listeners = new Set();
+  const readPreference = () => {
+    try { return localStorage.getItem(key); } catch { return null; }
+  };
+  let preference = readPreference();
+  const isDark = () => preference !== 'light';
+  function apply() {
+    document.documentElement.classList.toggle('dark', isDark());
+    listeners.forEach(listener => listener());
+  }
+  function toggle() {
+    preference = isDark() ? 'light' : 'dark';
+    try { localStorage.setItem(key, preference); } catch {}
+    apply();
+  }
+  window.portfolioTheme = {
+    isDark,
+    toggle,
+    subscribe(listener) {
+      listeners.add(listener);
+      return () => listeners.delete(listener);
+    },
+  };
+  window.addEventListener('storage', event => {
+    if (event.key === key || event.key === null) {
+      preference = readPreference();
+      apply();
+    }
+  });
+  apply();
+})();</script><link rel="stylesheet" href="/theme-palette.css?v=3bbe5568a340">
+<title>Mohan Krishna - Resume v2</title><meta name="description" content="Mohan Krishna: BITS Pilani Mathematics &amp; Computing student, software and AI engineering experience, projects, skills, and contact details. Open to roles and internships."><link rel="canonical" href="https://kirmada1509.github.io/resume-v2.html">
+<meta property="og:type" content="profile"><meta property="og:title" content="Mohan Krishna - Resume v2"><meta property="og:description" content="Mohan Krishna: BITS Pilani Mathematics &amp; Computing student, software and AI engineering experience, projects, skills, and contact details. Open to roles and internships."><meta property="og:url" content="https://kirmada1509.github.io/resume-v2.html"><meta property="og:image" content="https://kirmada1509.github.io/assets/social-card.png"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/favicon.svg?v=036aebeda7e1" type="image/svg+xml"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=8e5056852def"><link rel="icon" href="/assets/favicon.png?v=270386445855" sizes="32x32" type="image/png"><link rel="stylesheet" href="/resume.css?v=f6b8001b6e36"><script src="/resume.js?v=98db9a51a117" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Mohan Krishna","jobTitle":"Software & AI Engineer","url":"https://kirmada1509.github.io/","email":"mailto:f20240732@pilani.bits-pilani.ac.in","telephone":"+916302539619","sameAs":["https://github.com/kirmada1509","https://www.linkedin.com/in/mohan-krishna-karthik/"],"affiliation":{"@type":"CollegeOrUniversity","name":"Birla Institute of Technology and Science (BITS), Pilani"}}</script>
+</head><body class="resume-view">
+<a class="skip-link" href="#main">Skip to resume</a>
+<header class="resume-toolbar"><nav aria-label="Page navigation"><a href="/">Portfolio</a><a href="/resume.html" aria-current="page">Resume v2</a></nav><div class="resume-tools"><button type="button" data-resume-theme aria-pressed="false" hidden>Dark mode</button><a href="/assets/mohan-krishna-resume.pdf?v=e9e59361e903" download="Mohan-Krishna-Resume.pdf" data-resume-download>Save resume</a></div></header>
+<main id="main" class="resume-document">
+<header class="resume-identity"><h1>Mohan Krishna</h1><p class="resume-role">Software &amp; AI Engineer</p><p class="resume-degree"><strong>BITS Pilani</strong> · B.E. Mathematics &amp; Computing · Expected May 2028</p><p class="resume-availability">Open to software and AI engineering roles and internships.</p>
+<address class="resume-contacts"><a href="mailto:f20240732@pilani.bits-pilani.ac.in">f20240732@pilani.bits-pilani.ac.in</a><a href="tel:+916302539619">+91 6302539619</a><a href="https://github.com/kirmada1509">github.com/kirmada1509</a><a href="https://www.linkedin.com/in/mohan-krishna-karthik/">linkedin.com/in/mohan-krishna-karthik</a><a href="https://kirmada1509.github.io/">kirmada1509.github.io</a></address></header>
+<section aria-labelledby="education-title"><h2 id="education-title">Education</h2><div class="resume-item"><div class="resume-item-heading"><h3>Birla Institute of Technology and Science (BITS), Pilani</h3><p>Expected May 2028</p></div><p>B.E. Mathematics &amp; Computing</p><p class="resume-coursework">Relevant coursework: Data Structures &amp; Algorithms, Database Systems, Linear Algebra, Probability &amp; Statistics, Optimization.</p></div></section>
+<section aria-labelledby="experience-title"><h2 id="experience-title">Experience</h2><article class="resume-item"><div class="resume-item-heading"><h3>Engineering Lead</h3><p>May 2026 - Present</p></div><p class="resume-organization">Students' Union Technical Team, BITS Pilani</p><ul><li>Lead 20 student engineers across frontend, backend, mobile, and UI/UX to deliver campus products.</li><li>Introduced sprint planning, code reviews, and engineering standards; helped increase daily active users by approximately 45%.</li></ul></article><article class="resume-item"><div class="resume-item-heading"><h3>Software Engineering Intern</h3><p>May - July 2026</p></div><p class="resume-organization">OBS Experiences, Dehradun</p><ul><li>Architected a modular NestJS backend spanning 12+ business domains, including authentication, bookings, and payments.</li><li>Shipped two production Next.js applications with shared components, reducing duplicate frontend code by 40%+.</li><li>Automated deployment across four repositories with GitLab CI/CD, Docker, and Nginx, reducing deployment time by 90%.</li></ul></article></section>
+<section aria-labelledby="projects-title"><h2 id="projects-title">Selected projects</h2><article class="resume-item"><div class="resume-item-heading"><h3><a href="/work/interviehire.html">IntervieHire - AI Interviewer</a></h3><p>Sep 2026</p></div><p class="resume-stack">LiveKit Agents, Fastify, WebSockets, PostgreSQL</p><ul><li>Migrated from Vapi to self-hosted LiveKit Agents with Deepgram STT, Silero VAD, and Cartesia TTS, reducing voice infrastructure cost by 58%+.</li><li>Built bidirectional session orchestration with server-authoritative timing and idempotent interview turns.</li></ul></article><article class="resume-item"><div class="resume-item-heading"><h3><a href="/work/reentry.html">ReEntry - Browser Task Agent</a></h3><p>Oct 2026 | Technical preview</p></div><p class="resume-stack">TypeScript, browser extension, Ollama / NVIDIA inference</p><ul><li>Built evidence-linked task recovery, checkpoint history, draft recovery, and conflict protection with provider-independent inference and user correction; documented evaluation and accessibility limits.</li></ul></article><article class="resume-item"><div class="resume-item-heading"><h3><a href="/work/precedent.html">Precedent - Agent Action Checks</a></h3><p>Sep 2026 | Prototype</p></div><p class="resume-stack">Python, Moss, hybrid retrieval</p><ul><li>Built retrieval over approved and blocked tool calls using signatures, argument evidence, and provenance; added human review and live feedback write-back, with synthetic held-out evaluation.</li></ul></article><article class="resume-item"><div class="resume-item-heading"><h3><a href="/work/onetap.html">OneTap Vendor</a></h3><p>Dec 2025 - Mar 2026</p></div><p class="resume-stack">Go, Fyne, SQLite, sqlc</p><ul><li>Built an offline-first campus credit billing system from scratch for 5,000+ students, supporting $1.2M+ in annual campus purchases.</li><li>Vendors scan a QR in the SU app to charge the student's mess account, with billing at semester end; added retry/backoff synchronization and automatic backups.</li></ul></article><article class="resume-item"><div class="resume-item-heading"><h3><a href="/work/bosm.html">BOSM - Sports Festival App</a></h3><p>Aug - Sep 2025</p></div><p class="resume-stack">React Native, Expo, TypeScript</p><ul><li>Developed schedules, leaderboards, verification, and food ordering for 6,000+ participants; owned iOS and Android production releases through Expo EAS, App Store, and Google Play.</li></ul></article></section>
+<section aria-labelledby="skills-title"><h2 id="skills-title">Technical skills</h2><dl class="resume-skill-list"><div><dt>Languages</dt><dd>Python, TypeScript/JavaScript, Go, C++, SQL</dd></div><div><dt>AI &amp; real-time</dt><dd>LiveKit Agents, Deepgram STT, Cartesia TTS, Silero VAD, Ollama, NVIDIA inference, Moss, hybrid retrieval, evaluation</dd></div><div><dt>Applications</dt><dd>React, Next.js, React Native, NestJS, Fastify, FastAPI</dd></div><div><dt>Data &amp; infrastructure</dt><dd>PostgreSQL, Redis, SQLite, Docker, GitLab CI/CD, Nginx</dd></div></dl></section>
+<section aria-labelledby="achievements-title"><h2 id="achievements-title">Achievements</h2><ul><li>Top 10 campus finalist, Expedia Group Hackathon 2026: AI-powered multi-flight journey planner.</li><li>LeetCode contest rating: 1700+.</li></ul></section>
+</main><footer class="resume-footer"><a href="/">View full portfolio</a><a href="/resume.html">kirmada1509.github.io/resume.html</a></footer>
+</body></html>

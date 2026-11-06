@@ -1,0 +1,107 @@
+{
+  "typescript": {
+    "title": "TypeScript",
+    "color": "#3178C6",
+    "src": "/assets/tech/typescript.svg"
+  },
+  "javascript": {
+    "title": "JavaScript",
+    "color": "#A88700",
+    "src": "/assets/tech/javascript.svg"
+  },
+  "python": {
+    "title": "Python",
+    "color": "#3776AB",
+    "src": "/assets/tech/python.svg"
+  },
+  "go": {
+    "title": "Go",
+    "color": "#00ADD8",
+    "src": "/assets/tech/go.svg"
+  },
+  "cplusplus": {
+    "title": "C++",
+    "color": "#00599C",
+    "src": "/assets/tech/cplusplus.svg"
+  },
+  "livekit": {
+    "title": "LiveKit",
+    "color": "#7656A7",
+    "src": "/assets/tech/livekit.svg"
+  },
+  "deepgram": {
+    "title": "Deepgram",
+    "color": "#13EF93",
+    "src": "/assets/tech/deepgram.svg"
+  },
+  "ollama": {
+    "title": "Ollama",
+    "color": "#000000",
+    "src": "/assets/tech/ollama.svg"
+  },
+  "nvidia": {
+    "title": "NVIDIA",
+    "color": "#76B900",
+    "src": "/assets/tech/nvidia.svg"
+  },
+  "react": {
+    "title": "React",
+    "color": "#1688A6",
+    "src": "/assets/tech/react.svg"
+  },
+  "nextdotjs": {
+    "title": "Next.js",
+    "color": "#000000",
+    "src": "/assets/tech/nextdotjs.svg"
+  },
+  "nestjs": {
+    "title": "NestJS",
+    "color": "#E0234E",
+    "src": "/assets/tech/nestjs.svg"
+  },
+  "fastify": {
+    "title": "Fastify",
+    "color": "#000000",
+    "src": "/assets/tech/fastify.svg"
+  },
+  "fastapi": {
+    "title": "FastAPI",
+    "color": "#009688",
+    "src": "/assets/tech/fastapi.svg"
+  },
+  "postgresql": {
+    "title": "PostgreSQL",
+    "color": "#4169E1",
+    "src": "/assets/tech/postgresql.svg"
+  },
+  "redis": {
+    "title": "Redis",
+    "color": "#FF4438",
+    "src": "/assets/tech/redis.svg"
+  },
+  "sqlite": {
+    "title": "SQLite",
+    "color": "#003B57",
+    "src": "/assets/tech/sqlite.svg"
+  },
+  "docker": {
+    "title": "Docker",
+    "color": "#2496ED",
+    "src": "/assets/tech/docker.svg"
+  },
+  "gitlab": {
+    "title": "GitLab",
+    "color": "#FC6D26",
+    "src": "/assets/tech/gitlab.svg"
+  },
+  "nginx": {
+    "title": "NGINX",
+    "color": "#009639",
+    "src": "/assets/tech/nginx.svg"
+  },
+  "expo": {
+    "title": "Expo",
+    "color": "#1C2024",
+    "src": "/assets/tech/expo.svg"
+  }
+}

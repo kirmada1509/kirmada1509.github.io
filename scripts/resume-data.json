@@ -20,7 +20,7 @@
       "organization": "Students' Union Technical Team, BITS Pilani",
       "date": "May 2026 - Present",
       "bullets": [
-        "Lead 20 engineers across frontend, backend, mobile, and UI/UX to deliver campus products.",
+        "Lead 20 student engineers across frontend, backend, mobile, and UI/UX to deliver campus products.",
         "Introduced sprint planning, code reviews, and engineering standards; helped increase daily active users by approximately 45%."
       ]
     },
@@ -70,7 +70,8 @@
       "stack": "Go, Fyne, SQLite, sqlc",
       "path": "/work/onetap.html",
       "bullets": [
-        "Built offline-first campus billing serving 5,000+ students and supporting $1.2M+ annual payment volume, with retry/backoff synchronization, UPI QR payments, and automatic backups."
+        "Built an offline-first campus credit billing system from scratch for 5,000+ students, supporting $1.2M+ in annual campus purchases.",
+        "Vendors scan a QR in the SU app to charge the student's mess account, with billing at semester end; added retry/backoff synchronization and automatic backups."
       ]
     },
     {
@@ -84,13 +85,26 @@
     }
   ],
   "skills": [
-    ["Languages", "Python, TypeScript/JavaScript, Go, C++, SQL"],
-    ["AI & real-time", "LiveKit Agents, Deepgram STT, Cartesia TTS, Silero VAD, Ollama, NVIDIA inference, Moss, hybrid retrieval, evaluation"],
-    ["Applications", "React, Next.js, React Native, NestJS, Fastify, FastAPI"],
-    ["Data & infrastructure", "PostgreSQL, Redis, SQLite, Docker, GitLab CI/CD, Nginx"]
+    [
+      "Languages",
+      "Python, TypeScript/JavaScript, Go, C++, SQL"
+    ],
+    [
+      "AI & real-time",
+      "LiveKit Agents, Deepgram STT, Cartesia TTS, Silero VAD, Ollama, NVIDIA inference, Moss, hybrid retrieval, evaluation"
+    ],
+    [
+      "Applications",
+      "React, Next.js, React Native, NestJS, Fastify, FastAPI"
+    ],
+    [
+      "Data & infrastructure",
+      "PostgreSQL, Redis, SQLite, Docker, GitLab CI/CD, Nginx"
+    ]
   ],
   "achievements": [
     "Top 10 campus finalist, Expedia Group Hackathon 2026: AI-powered multi-flight journey planner.",
     "LeetCode contest rating: 1700+."
-  ]
+  ],
+  "version": 2
 }

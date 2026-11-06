@@ -28,7 +28,9 @@ jobs:
       - name: Configure GitHub Pages
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
       - name: Generate project pages and resume
-        run: npm run generate
+        run: |
+          npm ci
+          npm run generate
       - name: Check the website
         run: npm run check
       - name: Upload static website
