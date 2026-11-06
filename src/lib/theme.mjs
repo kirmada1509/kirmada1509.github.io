@@ -5,15 +5,22 @@ function initializeTheme() {
     try { return localStorage.getItem(key); } catch { return null; }
   };
   let preference = readPreference();
+  let transition;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const isDark = () => preference !== 'light';
   function apply() {
     document.documentElement.classList.toggle('dark', isDark());
     listeners.forEach(listener => listener());
   }
-  function toggle() {
+  function toggle({ animate = true } = {}) {
+    transition?.skipTransition();
     preference = isDark() ? 'light' : 'dark';
     try { localStorage.setItem(key, preference); } catch {}
-    apply();
+    if (animate && !reducedMotion.matches && document.startViewTransition) {
+      transition = document.startViewTransition(apply);
+    } else {
+      apply();
+    }
   }
   window.portfolioTheme = {
     isDark,
@@ -25,6 +32,7 @@ function initializeTheme() {
   };
   window.addEventListener('storage', event => {
     if (event.key === key || event.key === null) {
+      transition?.skipTransition();
       preference = readPreference();
       apply();
     }

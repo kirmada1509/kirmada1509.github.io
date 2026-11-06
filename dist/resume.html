@@ -7,15 +7,22 @@
     try { return localStorage.getItem(key); } catch { return null; }
   };
   let preference = readPreference();
+  let transition;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const isDark = () => preference !== 'light';
   function apply() {
     document.documentElement.classList.toggle('dark', isDark());
     listeners.forEach(listener => listener());
   }
-  function toggle() {
+  function toggle({ animate = true } = {}) {
+    transition?.skipTransition();
     preference = isDark() ? 'light' : 'dark';
     try { localStorage.setItem(key, preference); } catch {}
-    apply();
+    if (animate && !reducedMotion.matches && document.startViewTransition) {
+      transition = document.startViewTransition(apply);
+    } else {
+      apply();
+    }
   }
   window.portfolioTheme = {
     isDark,
@@ -27,15 +34,16 @@
   };
   window.addEventListener('storage', event => {
     if (event.key === key || event.key === null) {
+      transition?.skipTransition();
       preference = readPreference();
       apply();
     }
   });
   apply();
-})();</script><link rel="stylesheet" href="/theme-palette.css?v=6c64d61a2ba0">
+})();</script><link rel="stylesheet" href="/theme-palette.css?v=72ae2ad01e53">
 <title>Mohan Krishna - Resume v2</title><meta name="description" content="Mohan Krishna: BITS Pilani Mathematics &amp; Computing student, software and AI engineering experience, projects, skills, and contact details. Open to roles and internships."><link rel="canonical" href="https://kirmada1509.github.io/resume-v2.html">
 <meta property="og:type" content="profile"><meta property="og:title" content="Mohan Krishna - Resume v2"><meta property="og:description" content="Mohan Krishna: BITS Pilani Mathematics &amp; Computing student, software and AI engineering experience, projects, skills, and contact details. Open to roles and internships."><meta property="og:url" content="https://kirmada1509.github.io/resume-v2.html"><meta property="og:image" content="https://kirmada1509.github.io/assets/social-card.png"><meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/assets/favicon.svg?v=036aebeda7e1" type="image/svg+xml"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=8e5056852def"><link rel="icon" href="/assets/favicon.png?v=270386445855" sizes="32x32" type="image/png"><link rel="stylesheet" href="/resume.css?v=f6b8001b6e36"><script src="/resume.js?v=98db9a51a117" defer></script>
+<link rel="icon" href="/assets/favicon.svg?v=036aebeda7e1" type="image/svg+xml"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=8e5056852def"><link rel="icon" href="/assets/favicon.png?v=270386445855" sizes="32x32" type="image/png"><link rel="stylesheet" href="/resume.css?v=f6b8001b6e36"><script src="/resume.js?v=08ea937f24e3" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Mohan Krishna","jobTitle":"Software & AI Engineer","url":"https://kirmada1509.github.io/","email":"mailto:f20240732@pilani.bits-pilani.ac.in","telephone":"+916302539619","sameAs":["https://github.com/kirmada1509","https://www.linkedin.com/in/mohan-krishna-karthik/"],"affiliation":{"@type":"CollegeOrUniversity","name":"Birla Institute of Technology and Science (BITS), Pilani"}}</script>
 </head><body class="resume-view">
 <a class="skip-link" href="#main">Skip to resume</a>
