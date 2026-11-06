@@ -89,6 +89,9 @@
 .hero-orb::before,.hero-orb::after{content:'';position:absolute}
 .hero-orb::before{inset:-70%;background:radial-gradient(circle,var(--sky-orb-halo),transparent 65%)}
 .hero-orb::after{inset:0;background:var(--sky-orb-art) center/contain no-repeat}
+.dark .hero-celestial{mix-blend-mode:screen}
+.dark .hero-orb{top:clamp(78px,10vh,104px);right:7.5%;width:clamp(36px,3.8vw,50px)}
+.dark .hero-orb::after{mask-image:radial-gradient(closest-side,#000 82%,transparent)}
 .footer-landscape{background:var(--landscape) 56% 61%/cover no-repeat;mask-image:linear-gradient(transparent,#000 20%)}
 .footer-landscape:after{height:100px;background:linear-gradient(transparent,var(--surface-soft))}
 .footer-signature{z-index:3;text-shadow:0 4px 24px var(--shadow-strong)}
@@ -102,3 +105,4 @@
 .technology-badge img[src$="/nextdotjs.svg"],.technology-badge img[src$="/ollama.svg"],.technology-badge img[src$="/fastify.svg"],.technology-badge img[src$="/expo.svg"]{filter:var(--brand-icon-filter)}
 @media(max-width:800px){.mountain-scene{inset:13% 0 0;background-position:59% bottom}}
 @media(max-width:560px){.nav-utilities{gap:10px}.mountain-scene{inset:22% 0 0}.hero-orb{top:73px;right:9%}}
+@media(max-width:560px){.dark .hero-orb{top:73px;right:9%}}

@@ -16,9 +16,9 @@ These scenes were generated with built-in ImageGen from text prompts. No third-p
 
 ## Celestial artwork
 
-The hero uses transparent WebP exports of the morning sun and revised earthshine moon.
+The night sky uses a crop of NASA photograph ISS066-E-86969, taken from the International Space Station. The [WebP crop](../../dist/assets/landscapes/nasa-iss-crescent.webp) preserves the photographed crescent and blends its black backdrop into the site’s sky. [NASA photograph and credit](https://science.nasa.gov/resource/crescent-moon-from-the-international-space-station/) · [NASA media usage guidelines](https://www.nasa.gov/nasa-brand-center/images-and-media/)
 
-[Earthshine Moon](../../dist/assets/landscapes/earthshine-moon.webp)
+[Earlier earthshine Moon illustration](../../dist/assets/landscapes/earthshine-moon.webp)
 
 > Create one isolated transparent RGBA asset of Earth's Moon as it would look in an authentic ground-based telescope photograph for a nighttime mountain portfolio header. Use the reference only to identify the subject and phase, and replace its stylized cutout look. A natural broad waxing crescent about 38% illuminated on the right, tilted clockwise around 20 degrees, with the full round lunar outline faintly legible in extremely dim neutral blue-gray earthshine. Neutral silver-gray light, authentic irregular maria and softly resolved craters, plausible spherical shading, gradual terminator at small display size. Texture has the natural contrast and softness of a single 200 mm telephoto exposure, not HDR or etched, no sharpened bright rim or sparkle. The illuminated crescent should be luminous and the unlit hemisphere nearly invisible on an indigo backdrop. True alpha outside the circular disk and fade the near-black earthshine into alpha, no background fill. Center a lunar disk covering around 82% of the square canvas. No aura, halo, fog, bloom, stars, lens flare, vignette, scenery, type, frame or extra objects.
 
